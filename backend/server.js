@@ -16,7 +16,7 @@ app.use(cors());
 app.use(morgan());
 
 // PORT
-const { PORT } = process.env;
+const { PORT } = process.env || 8080;
 
 // app listen
 app.listen(PORT, () => {
