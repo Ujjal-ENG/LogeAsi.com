@@ -6,7 +6,9 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import ErrorPage from '../pages/ErrorPage';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
 import Policy from '../pages/Policy';
+import Register from '../pages/Register';
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +31,14 @@ export const router = createBrowserRouter([
             {
                 path: 'policy',
                 element: <Policy />
+            },
+            {
+                path: 'login',
+                element: <Login />
+            },
+            {
+                path: 'register',
+                element: <Register />
             }
         ]
     }
