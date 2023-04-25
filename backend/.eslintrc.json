@@ -9,7 +9,8 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "indent": "error",
+        "no-console": 0,
+        "indent": 0,
         "linebreak-style": "error",
         "no-var": "error",
         "camelcase": "error",
