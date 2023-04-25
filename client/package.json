@@ -10,6 +10,7 @@
         "lint": "npm i -D prettier && npm i -D babel-eslint && npx install-peerdeps --dev eslint-config-airbnb && npm i -D eslint-config-prettier eslint-plugin-prettier"
     },
     "dependencies": {
+        "daisyui": "^2.51.6",
         "localforage": "^1.10.0",
         "match-sorter": "^6.3.1",
         "react": "^18.2.0",
