@@ -1,11 +1,16 @@
+/* eslint-disable import/extensions */
 /* eslint-disable import/no-extraneous-dependencies */
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
+import connectDB from './config/connectDB.js';
 
 // config dotenv file
 dotenv.config();
+
+// database connection intilized
+connectDB();
 
 // create the app
 const app = express();
