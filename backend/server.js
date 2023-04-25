@@ -9,16 +9,16 @@ import connectDB from './config/connectDB.js';
 // config dotenv file
 dotenv.config();
 
-// database connection intilized
+// database connection initialized
 connectDB();
 
 // create the app
 const app = express();
 
-// setup the middlewares
+// setup the middleware
 app.use(express.json());
 app.use(cors());
-app.use(morgan());
+app.use(morgan('dev'));
 
 // PORT
 const { PORT } = process.env || 8080;
