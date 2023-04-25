@@ -101,3 +101,7 @@ export const loginUser = async (req, res) => {
         });
     }
 };
+// test router
+export const testRouter = (req, res) => {
+    res.send('Kopa mama this is protected');
+};
