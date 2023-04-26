@@ -80,13 +80,13 @@ function Navbar() {
                                 <li>
                                     <a className="justify-between">
                                         Profile
-                                        <span className="badge">New</span>
+                                        <span className="badge">{userInfo.user.role === '0' ? 'Customer' : 'Admin'}</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a>Settings</a>
+                                    <Link to="/dashboard">Dashboard</Link>
                                 </li>
-                                <Link to="/login" onClick={() => logoutUser()}>
+                                <Link to="/login" className="btn" onClick={() => logoutUser()}>
                                     Logout
                                 </Link>
                             </ul>
