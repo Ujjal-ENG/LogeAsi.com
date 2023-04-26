@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -6,16 +7,36 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-no-undef */
+import { useState } from 'react';
 import { FaAddressCard, FaEnvelope, FaLock, FaPhone, FaUser, FaUserPlus } from 'react-icons/fa';
 
 function Register() {
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+        phone: '',
+        address: '',
+        role: 0
+    });
+    const handleChange = (e) => {
+        setUser({
+            ...user,
+            [e.target.id]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(user);
+    };
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
                 <div>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Create an account</h2>
                 </div>
-                <form className="mt-8 space-y-6" action="#" method="POST">
+                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <input type="hidden" name="remember" value="true" />
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
@@ -31,6 +52,8 @@ function Register() {
                                     name="name"
                                     type="text"
                                     autoComplete="name"
+                                    value={user.name}
+                                    onChange={handleChange}
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Full Name"
@@ -50,6 +73,8 @@ function Register() {
                                     name="email"
                                     type="email"
                                     autoComplete="email"
+                                    value={user.email}
+                                    onChange={handleChange}
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Email address"
@@ -69,6 +94,8 @@ function Register() {
                                     name="password"
                                     type="password"
                                     autoComplete="current-password"
+                                    value={user.password}
+                                    onChange={handleChange}
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Password"
@@ -86,6 +113,8 @@ function Register() {
                                     name="phone"
                                     type="tel"
                                     autoComplete="tel"
+                                    value={user.phone}
+                                    onChange={handleChange}
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Phone number"
@@ -104,6 +133,8 @@ function Register() {
                                     id="address"
                                     name="address"
                                     autoComplete="address"
+                                    value={user.address}
+                                    onChange={handleChange}
                                     required
                                     rows="3"
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -123,13 +154,15 @@ function Register() {
                                     id="role"
                                     name="role"
                                     autoComplete="role"
+                                    value={user.role}
+                                    onChange={handleChange}
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                                     <option disabled defaultValue="">
                                         Select Role
                                     </option>
-                                    <option value="customer">Customer</option>
-                                    <option value="vendor">Vendor</option>
+                                    <option value="0">Customer</option>
+                                    <option value="1">Vendor</option>
                                 </select>
                             </div>
                         </div>
@@ -137,7 +170,7 @@ function Register() {
 
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                            <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
+                            <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" required />
                             <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
                                 Remember me
                             </label>
