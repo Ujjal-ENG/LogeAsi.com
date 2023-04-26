@@ -10,12 +10,10 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useContext, useState } from 'react';
 
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Login() {
-    const navigate = useNavigate();
-    const location = useLocation();
     const { loggedInUser } = useContext(AuthContext);
     const [user, setUser] = useState({
         email: '',
