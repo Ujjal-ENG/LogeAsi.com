@@ -4,6 +4,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import AdminDashboard from '../components/pages/Admin/AdminDashboard';
+import CreateCategory from '../components/pages/Admin/CreateCategory';
+import CreateProduct from '../components/pages/Admin/CreateProduct';
+import Users from '../components/pages/Admin/Users';
 import Category from '../components/pages/Category';
 import ErrorPage from '../components/pages/ErrorPage';
 import About from '../components/pages/FooterPage/About';
@@ -66,12 +69,26 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/dashboard/*',
+                path: '/dashboard',
                 element: <PrivateAdminRoute />,
                 children: [
                     {
                         path: 'admin',
-                        element: <AdminDashboard />
+                        element: <AdminDashboard />,
+                        children: [
+                            {
+                                path: 'create-category',
+                                element: <CreateCategory />
+                            },
+                            {
+                                path: 'create-product',
+                                element: <CreateProduct />
+                            },
+                            {
+                                path: 'users',
+                                element: <Users />
+                            }
+                        ]
                     }
                 ]
             }
