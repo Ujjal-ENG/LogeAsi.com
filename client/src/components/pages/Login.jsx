@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Login() {
-    const { loggedInUser, userInfo } = useContext(AuthContext);
+    const { loggedInUser } = useContext(AuthContext);
     const [user, setUser] = useState({
         email: '',
         password: ''
