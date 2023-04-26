@@ -2,12 +2,12 @@
 /* eslint-disable comma-dangle */
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../../App';
-import About from '../pages/About';
-import Contact from '../pages/Contact';
 import ErrorPage from '../pages/ErrorPage';
+import About from '../pages/FooterPage/About';
+import Contact from '../pages/FooterPage/Contact';
+import Policy from '../pages/FooterPage/Policy';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
-import Policy from '../pages/Policy';
 import Register from '../pages/Register';
 
 export const router = createBrowserRouter([
