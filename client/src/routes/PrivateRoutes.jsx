@@ -8,7 +8,6 @@ import { AuthContext } from '../context/AuthProvider';
 function PrivateRoutes({ children }) {
     const { userInfo } = useContext(AuthContext);
     const [ok, setOK] = useState(false);
-    console.log(userInfo.token);
     useEffect(() => {
         const authCheck = async () => {
             const res = await axios.get('http://localhost:8080/api/v1/auth/user-auth', {

@@ -60,6 +60,10 @@ export const router = createBrowserRouter([
             {
                 path: 'spiner',
                 element: <Spinner />
+            },
+            {
+                path: 'private-route',
+                element: <PrivateRoutes />
             }
         ]
     }
