@@ -7,14 +7,14 @@ import userModel from '../models/userModel.js';
 export const requireSignIn = async (req, res, next) => {
     try {
         const decode = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        const { email } = req.body;
-        const { id } = await userModel.findOne({ email });
-        if (id !== decode.userId) {
-            return res.status(400).json({
-                message: 'Auth Failed',
-                success: false,
-            });
-        }
+        // const { email } = req.body;
+        // const { id } = await userModel.findOne({ email });
+        // if (id !== decode.userId) {
+        //     return res.status(400).json({
+        //         message: 'Auth Failed',
+        //         success: false,
+        //     });
+        // }
         req.user = decode;
         next();
     } catch (error) {
