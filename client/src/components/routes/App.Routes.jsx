@@ -10,6 +10,7 @@ import Policy from '../pages/FooterPage/Policy';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Dashbroad from '../pages/user/Dashbroad';
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register />
+            },
+            {
+                path: 'dashboard',
+                element: <Dashbroad />
             }
         ]
     }
