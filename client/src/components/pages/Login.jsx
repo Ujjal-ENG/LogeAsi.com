@@ -31,7 +31,6 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         loggedInUser(user);
-        navigate(location.state || '/');
     };
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -54,7 +53,7 @@ function Login() {
                             </label>
                             <input type="password" placeholder="password" id="password" required className="input input-bordered" value={user.password} onChange={handleChange} />
                             <div className="text-sm  pt-4">
-                                <Link to="/login" className="font-bold text-indigo-600 hover:text-indigo-500">
+                                <Link to="/forgot-password" className="font-bold text-indigo-600 hover:text-indigo-500">
                                     Forgot Password?
                                 </Link>
                             </div>

@@ -8,6 +8,7 @@ import ErrorPage from '../components/pages/ErrorPage';
 import About from '../components/pages/FooterPage/About';
 import Contact from '../components/pages/FooterPage/Contact';
 import Policy from '../components/pages/FooterPage/Policy';
+import ForgotPassword from '../components/pages/ForgotPassword';
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import Register from '../components/pages/Register';
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
                         <Dashbroad />
                     </PrivateRoutes>
                 )
+            },
+            {
+                path: 'forgot-password',
+                element: <ForgotPassword />
             }
         ]
     }
