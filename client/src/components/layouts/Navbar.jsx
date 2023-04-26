@@ -72,16 +72,17 @@ function Navbar() {
                     </div>
 
                     {userInfo.user ? (
-                        <div className="dropdown dropdown-end">
+                        <div className="dropdown dropdown-end relative">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <p className="text-orange-600 font-bold"> {userInfo.user.name}</p>
+                                <p className="text-orange-600 font-bold ring-2 rounded-full p-1">
+                                    {' '}
+                                    {userInfo.user.name}
+                                    <span className="badge absolute -top-5 -left-20">{userInfo.user.role === 0 ? 'Customer' : 'Admin'}</span>
+                                </p>
                             </label>
                             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
-                                    <a className="justify-between">
-                                        Profile
-                                        <span className="badge">{userInfo.user.role === '0' ? 'Customer' : 'Admin'}</span>
-                                    </a>
+                                    <a className="justify-between">Profile</a>
                                 </li>
                                 <li>
                                     <Link to="/dashboard">Dashboard</Link>
