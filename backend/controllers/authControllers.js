@@ -103,7 +103,43 @@ export const loginUser = async (req, res) => {
 };
 
 // forgot password
-export const forgotPassword = async (req, res) => {};
+export const forgotPassword = async (req, res) => {
+    try {
+        const { email, answer, newPassword } = req.body;
+
+        if (!email || !answer || !newPassword) {
+            return res.status(400).json({
+                message: 'Please Provide the all field values!!',
+                success: false,
+            });
+        }
+
+        // check
+        const user = await userModel.findOne({ email, answer });
+        // validation
+        if (!user) {
+            return res.status(404).json({
+                message: 'Email or Answer is wrong provided!!',
+                success: false,
+            });
+        }
+
+        const hashedPass = await hashPassword(newPassword);
+
+        await userModel.findByIdAndUpdate(user._id, { password: hashedPass });
+
+        res.status(200).json({
+            message: 'Password Reset Successfully!!',
+            success: false,
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: 'Bad Request from Forgot User',
+            success: false,
+            error,
+        });
+    }
+};
 
 // test router
 export const testRouter = (req, res) => {
