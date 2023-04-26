@@ -6,6 +6,7 @@ import express from 'express';
 import morgan from 'morgan';
 import connectDB from './config/connectDB.js';
 import authRouter from './routes/authRoutes.js';
+import categoryRouter from './routes/categoryRoutes.js';
 
 // config dotenv file
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(morgan('dev'));
 
 // routes
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/category', categoryRouter);
 
 // PORT
 const { PORT } = process.env || 8080;
