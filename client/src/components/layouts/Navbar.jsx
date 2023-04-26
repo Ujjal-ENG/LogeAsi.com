@@ -85,7 +85,7 @@ function Navbar() {
                                     <a className="justify-between">Profile</a>
                                 </li>
                                 <li>
-                                    <Link to="/dashboard">Dashboard</Link>
+                                    <Link to="/dashboard/user">Dashboard</Link>
                                 </li>
                                 <Link to="/login" className="btn" onClick={() => logoutUser()}>
                                     Logout
