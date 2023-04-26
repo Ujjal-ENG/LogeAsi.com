@@ -26,14 +26,8 @@ function Navbar() {
                     <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
                         Home
                     </NavLink>
-                    <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
-                        About
-                    </NavLink>
-                    <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
-                        Contact
-                    </NavLink>
-                    <NavLink to="/policy" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
-                        Policy
+                    <NavLink to="/category" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
+                        Category
                     </NavLink>
                 </div>
 
@@ -43,14 +37,8 @@ function Navbar() {
                         <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
                             Home
                         </NavLink>
-                        <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
-                            About
-                        </NavLink>
-                        <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
-                            Contact
-                        </NavLink>
-                        <NavLink to="/policy" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
-                            Policy
+                        <NavLink to="/category" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
+                            Category
                         </NavLink>
                     </ul>
                 </div>

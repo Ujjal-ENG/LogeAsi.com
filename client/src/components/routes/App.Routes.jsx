@@ -2,6 +2,7 @@
 /* eslint-disable comma-dangle */
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../../App';
+import Category from '../pages/Category';
 import ErrorPage from '../pages/ErrorPage';
 import About from '../pages/FooterPage/About';
 import Contact from '../pages/FooterPage/Contact';
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: 'category',
+                element: <Category />
             },
             {
                 path: 'about',
