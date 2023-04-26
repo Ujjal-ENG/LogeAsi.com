@@ -105,9 +105,8 @@ export const loginUser = async (req, res) => {
 // forgot password
 export const forgotPassword = async (req, res) => {
     try {
-        const { email, answer, newPassword } = req.body;
-
-        if (!email || !answer || !newPassword) {
+        const { email, answer, password } = req.body;
+        if (!email || !answer || !password) {
             return res.status(400).json({
                 message: 'Please Provide the all field values!!',
                 success: false,
@@ -124,13 +123,13 @@ export const forgotPassword = async (req, res) => {
             });
         }
 
-        const hashedPass = await hashPassword(newPassword);
+        const hashedPass = await hashPassword(password);
 
         await userModel.findByIdAndUpdate(user._id, { password: hashedPass });
 
         res.status(200).json({
             message: 'Password Reset Successfully!!',
-            success: false,
+            success: true,
         });
     } catch (error) {
         res.status(400).json({
