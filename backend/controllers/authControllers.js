@@ -101,6 +101,10 @@ export const loginUser = async (req, res) => {
         });
     }
 };
+
+// forgot password
+export const forgotPassword = async (req, res) => {};
+
 // test router
 export const testRouter = (req, res) => {
     res.send('Kopa mama this is protected');
