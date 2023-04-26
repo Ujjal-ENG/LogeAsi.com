@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable jsx-a11y/iframe-has-title */
