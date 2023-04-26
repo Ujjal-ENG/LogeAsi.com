@@ -3,6 +3,7 @@
 /* eslint-disable comma-dangle */
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
+import AdminDashboard from '../components/pages/Admin/AdminDashboard';
 import Category from '../components/pages/Category';
 import ErrorPage from '../components/pages/ErrorPage';
 import About from '../components/pages/FooterPage/About';
@@ -70,7 +71,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: 'admin',
-                        element: <Dashbroad />
+                        element: <AdminDashboard />
                     }
                 ]
             }
