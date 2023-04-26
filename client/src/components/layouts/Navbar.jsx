@@ -13,7 +13,7 @@ import { AuthContext } from '../../context/AuthProvider';
 function Navbar() {
     const { userInfo, logoutUser } = useContext(AuthContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    console.log(userInfo.user);
+
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
             <div className="navbar bg-base-100 flex justify-between items-center relative">
