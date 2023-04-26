@@ -37,17 +37,17 @@ function AuthProvider({ children }) {
             const res = await axios.post('http://localhost:8080/api/v1/auth/login', user);
 
             if (res.data && res.data.success) {
-                toast.success('Successfully LoggedIn!!');
                 localStorage.setItem('auths', JSON.stringify(res.data));
                 setUserInfo({
                     ...userInfo,
                     user: res.data.user,
                     token: res.data.token
                 });
+                toast.success('Successfully LoggedIn!!');
                 setIsLoading(false);
+            } else {
+                toast.error(res.data.message);
             }
-            toast.error(res.data.message);
-
             setIsLoading(false);
             setIsLoggedIn(true);
         } catch (error) {
@@ -66,6 +66,7 @@ function AuthProvider({ children }) {
                 user: null,
                 token: ''
             });
+            toast.success('You Logged out Successfully!!');
         } catch (error) {
             console.log(error);
         }
