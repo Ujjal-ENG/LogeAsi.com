@@ -10,11 +10,13 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useContext, useState } from 'react';
 
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Login() {
     const { loggedInUser } = useContext(AuthContext);
+    const [showPass, setShowPass] = useState(false);
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -45,11 +47,18 @@ function Login() {
                             </label>
                             <input id="email" type="email" placeholder="email" value={user.email} required onChange={handleChange} className="input input-bordered" />
                         </div>
-                        <div className="form-control">
+                        <div className="form-control relative">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" id="password" required className="input input-bordered" value={user.password} onChange={handleChange} />
+                            <input type={showPass ? 'text' : 'password'} placeholder="password" id="password" required className="input input-bordered" value={user.password} onChange={handleChange} />
+
+                            {showPass ? (
+                                <AiFillEye className="absolute right-4 bottom-12 text-2xl" onClick={() => setShowPass(!showPass)} />
+                            ) : (
+                                <AiFillEyeInvisible className="absolute right-4 bottom-12 text-2xl" onClick={() => setShowPass(!showPass)} />
+                            )}
+
                             <div className="text-sm  pt-4">
                                 <Link to="/forgot-password" className="font-bold text-indigo-600 hover:text-indigo-500">
                                     Forgot Password?
