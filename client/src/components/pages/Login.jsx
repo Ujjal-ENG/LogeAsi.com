@@ -53,11 +53,11 @@ function Login() {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" id="password" required className="input input-bordered" value={user.password} onChange={handleChange} />
-                            <label className="label">
-                                <Link to="/" className="label-text-alt link link-hover">
-                                    Forgot password?
+                            <div className="text-sm  pt-4">
+                                <Link to="/login" className="font-bold text-indigo-600 hover:text-indigo-500">
+                                    Forgot Password?
                                 </Link>
-                            </label>
+                            </div>
                         </div>
                         <div type="submit" className="form-control mt-6">
                             <button className="btn btn-success">Login</button>
