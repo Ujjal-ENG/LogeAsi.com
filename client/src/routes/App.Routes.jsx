@@ -3,7 +3,6 @@
 /* eslint-disable comma-dangle */
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import Spinner from '../components/layouts/Spinner';
 import Category from '../components/pages/Category';
 import ErrorPage from '../components/pages/ErrorPage';
 import About from '../components/pages/FooterPage/About';
@@ -56,14 +55,6 @@ export const router = createBrowserRouter([
                         <Dashbroad />
                     </PrivateRoutes>
                 )
-            },
-            {
-                path: 'spiner',
-                element: <Spinner />
-            },
-            {
-                path: 'private-route',
-                element: <PrivateRoutes />
             }
         ]
     }

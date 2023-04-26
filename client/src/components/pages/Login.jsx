@@ -10,10 +10,12 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useContext, useState } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Login() {
+    const navigate = useNavigate();
+    const location = useLocation();
     const { loggedInUser } = useContext(AuthContext);
     const [user, setUser] = useState({
         email: '',
@@ -25,11 +27,11 @@ function Login() {
             [e.target.id]: e.target.value
         });
     };
-    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         loggedInUser(user);
-        navigate('/');
+        navigate(location.state || '/');
     };
     return (
         <div className="hero min-h-screen bg-base-200">

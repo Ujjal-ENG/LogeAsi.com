@@ -23,6 +23,7 @@ function PrivateRoutes({ children }) {
         };
         if (userInfo?.token) authCheck();
     }, [userInfo?.token]);
+
     return ok ? children : <Spinner />;
 }
 
