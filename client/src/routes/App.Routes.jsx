@@ -17,6 +17,8 @@ import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import Register from '../components/pages/Register';
 import Dashbroad from '../components/pages/user/Dashbroad';
+import Orders from '../components/pages/user/Orders';
+import Profile from '../components/pages/user/Profile';
 import PrivateAdminRoute from './PrivateAdminRoute';
 import PrivateRoutes from './PrivateRoutes';
 
@@ -64,7 +66,17 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: 'user',
-                        element: <Dashbroad />
+                        element: <Dashbroad />,
+                        children: [
+                            {
+                                path: 'profile',
+                                element: <Profile />
+                            },
+                            {
+                                path: 'orders',
+                                element: <Orders />
+                            }
+                        ]
                     }
                 ]
             },
