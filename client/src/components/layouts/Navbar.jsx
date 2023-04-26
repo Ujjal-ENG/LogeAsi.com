@@ -85,7 +85,7 @@ function Navbar() {
                                     <a className="justify-between">Profile</a>
                                 </li>
                                 <li>
-                                    <Link to="/dashboard/user">Dashboard</Link>
+                                    <Link to={`/dashboard/${userInfo.user.role === 0 ? 'user' : 'admin'}`}>Dashboard</Link>
                                 </li>
                                 <Link to="/login" className="btn" onClick={() => logoutUser()}>
                                     Logout

@@ -2,10 +2,11 @@
 /* eslint-disable comma-dangle */
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import Spinner from '../components/layouts/Spinner';
 import { AuthContext } from '../context/AuthProvider';
 
-function PrivateAdminRoute({ children }) {
+function PrivateAdminRoute() {
     const { userInfo } = useContext(AuthContext);
     const [ok, setOK] = useState(false);
     useEffect(() => {
@@ -24,7 +25,7 @@ function PrivateAdminRoute({ children }) {
         if (userInfo?.token) authCheck();
     }, [userInfo?.token]);
 
-    return ok ? children : <Spinner />;
+    return ok ? <Outlet /> : <Spinner />;
 }
 
 export default PrivateAdminRoute;
