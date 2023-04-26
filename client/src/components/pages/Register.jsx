@@ -7,13 +7,14 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-no-undef */
-import axios from 'axios';
-import { useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { useContext, useState } from 'react';
+
 import { FaAddressCard, FaEnvelope, FaLock, FaPhone, FaUser, FaUserPlus } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 function Register() {
+    const { registerUser } = useContext(AuthContext);
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -32,17 +33,8 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const res = await axios.post('http://localhost:8080/api/v1/auth/register', user);
-            if (res.data.success) {
-                toast.success(`${user.name} Successfully Registered!!`);
-                navigate('/login');
-            } else {
-                toast.error(res.data.message);
-            }
-        } catch (error) {
-            toast.error(error);
-        }
+        await registerUser(user);
+        navigate('/login');
     };
 
     return (

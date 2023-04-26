@@ -1,16 +1,19 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-indent */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ImCross, ImMenu } from 'react-icons/im';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 function Navbar() {
+    const { userInfo, logoutUser } = useContext(AuthContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    console.log(userInfo.user);
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
             <div className="navbar bg-base-100 flex justify-between items-center relative">
@@ -68,12 +71,10 @@ function Navbar() {
                         </div>
                     </div>
 
-                    {isLoggedIn ? (
+                    {userInfo.user ? (
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                </div>
+                                <p className="text-orange-600 font-bold"> {userInfo.user.name}</p>
                             </label>
                             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
@@ -85,9 +86,9 @@ function Navbar() {
                                 <li>
                                     <a>Settings</a>
                                 </li>
-                                <li>
+                                <Link to="/login" onClick={() => logoutUser()}>
                                     <a>Logout</a>
-                                </li>
+                                </Link>
                             </ul>
                         </div>
                     ) : (

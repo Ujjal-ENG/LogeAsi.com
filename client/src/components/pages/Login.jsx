@@ -8,12 +8,13 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-no-undef */
-import axios from 'axios';
-import React, { useState } from 'react';
-import { toast } from 'react-hot-toast';
+import React, { useContext, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 function Login() {
+    const { loggedInUser, userInfo } = useContext(AuthContext);
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -25,22 +26,10 @@ function Login() {
         });
     };
     const navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const res = await axios.post('http://localhost:8080/api/v1/auth/login', user);
-
-            if (res.data && res.data.success) {
-                toast.success('Successfully LoggedIn!!');
-                navigate('/');
-            } else {
-                console.log(res.data.message);
-                toast.error(res.data.message);
-            }
-        } catch (error) {
-            toast.error(error.message);
-        }
+        loggedInUser(user);
+        navigate('/');
     };
     return (
         <div className="hero min-h-screen bg-base-200">
