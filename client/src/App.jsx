@@ -3,10 +3,11 @@ import { Helmet } from 'react-helmet';
 import { Outlet } from 'react-router-dom';
 import Footer from './components/layouts/Footer';
 import Navbar from './components/layouts/Navbar';
+import AuthProvider from './context/AuthProvider';
 
 function App({ title, description, keywords }) {
     return (
-        <div>
+        <AuthProvider>
             <Helmet>
                 <meta charSet="utf-8" />
                 <meta name="description" content={description || 'Daily uses products'} />
@@ -20,7 +21,7 @@ function App({ title, description, keywords }) {
                 <Outlet />
             </main>
             <Footer />
-        </div>
+        </AuthProvider>
     );
 }
 
