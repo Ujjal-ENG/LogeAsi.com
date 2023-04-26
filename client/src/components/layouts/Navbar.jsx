@@ -8,6 +8,7 @@
 import React, { useContext, useState } from 'react';
 import { ImCross, ImMenu } from 'react-icons/im';
 import { Link, NavLink } from 'react-router-dom';
+import Logo from '../../assets/LoGeAsi.svg';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Navbar() {
@@ -19,7 +20,7 @@ function Navbar() {
             <div className="navbar bg-base-100 flex justify-between items-center relative">
                 <div className="hidden sm:flex">
                     <Link to="/" className="text-xl">
-                        LogeAsi.com
+                        <img src={Logo} alt="LogeAsi.com" className="bg-black h-14 w-24 scale-110" />
                     </Link>
                 </div>
                 <div className="sm:hidden block text-5xl">
