@@ -10,7 +10,7 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useContext, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Login() {
@@ -52,9 +52,9 @@ function Login() {
                             </label>
                             <input type="password" placeholder="password" id="password" required className="input input-bordered" value={user.password} onChange={handleChange} />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">
+                                <Link to="/" className="label-text-alt link link-hover">
                                     Forgot password?
-                                </a>
+                                </Link>
                             </label>
                         </div>
                         <div type="submit" className="form-control mt-6">

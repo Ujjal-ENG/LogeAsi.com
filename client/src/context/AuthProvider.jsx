@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 
 import { toast } from 'react-hot-toast';
+import Spinner from '../components/layouts/Spinner';
 
 export const AuthContext = createContext(null);
 function AuthProvider({ children }) {
@@ -84,11 +85,7 @@ function AuthProvider({ children }) {
     }, []);
 
     if (loading) {
-        return (
-            <div className="flex h-screen justify-center items-center">
-                <progress className="progress w-56" />
-            </div>
-        );
+        return <Spinner />;
     }
     const auths = {
         registerUser,

@@ -87,7 +87,7 @@ function Navbar() {
                                     <a>Settings</a>
                                 </li>
                                 <Link to="/login" onClick={() => logoutUser()}>
-                                    <a>Logout</a>
+                                    Logout
                                 </Link>
                             </ul>
                         </div>
