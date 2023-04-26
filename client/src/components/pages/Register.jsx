@@ -7,8 +7,11 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-no-undef */
+import axios from 'axios';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { FaAddressCard, FaEnvelope, FaLock, FaPhone, FaUser, FaUserPlus } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [user, setUser] = useState({
@@ -25,11 +28,23 @@ function Register() {
             [e.target.id]: e.target.value
         });
     };
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
+        try {
+            const res = await axios.post('http://localhost:8080/api/v1/auth/register', user);
+            if (res.data.success) {
+                toast.success(`${user.name} Successfully Registered!!`);
+                navigate('/login');
+            } else {
+                toast.error(res.data.message);
+            }
+        } catch (error) {
+            toast.error(error);
+        }
     };
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
