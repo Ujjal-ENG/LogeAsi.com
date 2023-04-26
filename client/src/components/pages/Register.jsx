@@ -8,12 +8,13 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-no-undef */
 import { useContext, useState } from 'react';
-
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { FaAddressCard, FaEnvelope, FaLock, FaPhone, FaUser, FaUserPlus } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Register() {
+    const [showPass, setShowPass] = useState(false);
     const { registerUser } = useContext(AuthContext);
     const [user, setUser] = useState({
         name: '',
@@ -97,17 +98,24 @@ function Register() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <FaLock className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                 </div>
+
                                 <input
+                                    type={showPass ? 'text' : 'password'}
+                                    placeholder="#*&$fdjhfd"
                                     id="password"
                                     name="password"
-                                    type="password"
                                     autoComplete="current-password"
-                                    value={user.password}
-                                    onChange={handleChange}
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Password"
+                                    value={user.password}
+                                    onChange={handleChange}
                                 />
+
+                                {showPass ? (
+                                    <AiFillEye className="absolute right-4 bottom-2 text-2xl cursor-pointer" onClick={() => setShowPass(!showPass)} />
+                                ) : (
+                                    <AiFillEyeInvisible className="absolute right-4 bottom-2 text-2xl cursor-pointer" onClick={() => setShowPass(!showPass)} />
+                                )}
                             </div>
                         </div>
                         <div>

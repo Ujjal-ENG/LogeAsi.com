@@ -54,9 +54,9 @@ function Login() {
                             <input type={showPass ? 'text' : 'password'} placeholder="password" id="password" required className="input input-bordered" value={user.password} onChange={handleChange} />
 
                             {showPass ? (
-                                <AiFillEye className="absolute right-4 bottom-12 text-2xl" onClick={() => setShowPass(!showPass)} />
+                                <AiFillEye className="absolute right-4 bottom-12 text-2xl cursor-pointer" onClick={() => setShowPass(!showPass)} />
                             ) : (
-                                <AiFillEyeInvisible className="absolute right-4 bottom-12 text-2xl" onClick={() => setShowPass(!showPass)} />
+                                <AiFillEyeInvisible className="absolute right-4 bottom-12 text-2xl cursor-pointer" onClick={() => setShowPass(!showPass)} />
                             )}
 
                             <div className="text-sm  pt-4">

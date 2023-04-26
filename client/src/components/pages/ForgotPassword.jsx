@@ -8,11 +8,12 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-no-undef */
-
 import React, { useContext, useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { AuthContext } from '../../context/AuthProvider';
 
 function ForgotPassword() {
+    const [showPass, setShowPass] = useState(false);
     const { forgotPassword } = useContext(AuthContext);
     const [user, setUser] = useState({
         email: '',
@@ -60,16 +61,22 @@ function ForgotPassword() {
 
                                 <div className="relative">
                                     <label className="font-semibold text-gray-600 block pb-2">New Password</label>
+
                                     <input
-                                        type="password"
+                                        type={showPass ? 'text' : 'password'}
+                                        placeholder="#*&$fdjhfd"
                                         id="password"
-                                        name="password"
+                                        required
+                                        className="w-full bg-gray-100 h-10 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500 focus:bg-white"
                                         value={user.password}
                                         onChange={handleChange}
-                                        className="w-full bg-gray-100 h-10 px-3 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500 focus:bg-white"
-                                        placeholder="#*&$fdjhfd"
-                                        required
                                     />
+
+                                    {showPass ? (
+                                        <AiFillEye className="absolute right-4 bottom-2 text-2xl cursor-pointer" onClick={() => setShowPass(!showPass)} />
+                                    ) : (
+                                        <AiFillEyeInvisible className="absolute right-4 bottom-2 text-2xl cursor-pointer" onClick={() => setShowPass(!showPass)} />
+                                    )}
                                 </div>
                                 <div className="relative">
                                     <label className="font-semibold text-gray-600 block pb-2">Security Question</label>
