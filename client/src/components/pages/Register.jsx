@@ -10,7 +10,7 @@
 import { useContext, useState } from 'react';
 
 import { FaAddressCard, FaEnvelope, FaLock, FaPhone, FaUser, FaUserPlus } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 function Register() {
@@ -21,6 +21,7 @@ function Register() {
         password: '',
         phone: '',
         address: '',
+        answer: '',
         role: 0
     });
     const handleChange = (e) => {
@@ -48,7 +49,7 @@ function Register() {
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="name" className="sr-only">
-                                Full Name
+                                Nick Name
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -63,7 +64,7 @@ function Register() {
                                     onChange={handleChange}
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Full Name"
+                                    placeholder="Nick Name"
                                 />
                             </div>
                         </div>
@@ -149,6 +150,28 @@ function Register() {
                                 />
                             </div>
                         </div>
+
+                        <div>
+                            <label htmlFor="name" className="sr-only">
+                                Answer
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <FaUser className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                </div>
+                                <input
+                                    id="answer"
+                                    name="answer"
+                                    type="text"
+                                    autoComplete="answer"
+                                    value={user.answer}
+                                    onChange={handleChange}
+                                    required
+                                    className="appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    placeholder="What is Your FullName?"
+                                />
+                            </div>
+                        </div>
                         <div>
                             <label htmlFor="role" className="sr-only">
                                 Role
@@ -184,9 +207,9 @@ function Register() {
                         </div>
 
                         <div className="text-sm">
-                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                Forgot your password?
-                            </a>
+                            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                Already have an Account?
+                            </Link>
                         </div>
                     </div>
 
