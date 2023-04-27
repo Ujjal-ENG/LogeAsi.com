@@ -8,6 +8,7 @@ import {
   getAllProducts,
   getProductPhoto,
   getSingleProduct,
+  updateProduct,
 } from '../controllers/productControllers.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddlewares.js';
 
@@ -27,6 +28,9 @@ router.get('/getProduct-photo/:pid', getProductPhoto);
 
 // delete product
 router.delete('/delete-product/:id', requireSignIn, isAdmin, deleteProduct);
+
+// update product
+router.patch('/update-product/:id', requireSignIn, isAdmin, updateProduct);
 
 // router export
 export default router;

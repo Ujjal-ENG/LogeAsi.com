@@ -20,7 +20,6 @@ export const createProduct = async (req, res) => {
       });
     }
     const products = new productModel({ ...req.fields, slug: slugify(req.fields.name) });
-console.log(products);
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
       products.photo.contentType = photo.type;
@@ -126,6 +125,41 @@ export const deleteProduct = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Error from Delete Product',
+      success: false,
+      error,
+    });
+  }
+};
+
+// update product controller
+export const updateProduct = async (req, res) => {
+  try {
+    const { photo } = req.files;
+    if (!req.fields) {
+      return res.status(400).json({
+        message: 'Please Provided all fields and photo size should be less than 1mb',
+        success: false,
+      });
+    }
+    const updatedProducts = await productModel.findByIdAndUpdate(req.params.id, { ...req.fields, slug: slugify(req.fields.name) }, {
+      new: true,
+    });
+
+    if (photo) {
+      updatedProducts.photo.data = fs.readFileSync(photo.path);
+      updatedProducts.photo.contentType = photo.type;
+    }
+
+    await updatedProducts.save();
+
+    res.status(201).json({
+      message: 'Product is Successfully Updated!!',
+      success: true,
+      updatedProducts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error from Update Product',
       success: false,
       error,
     });
