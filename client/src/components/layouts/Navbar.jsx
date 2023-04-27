@@ -81,10 +81,7 @@ function Navbar() {
                                     <span className="badge absolute -top-5 -left-20">{userInfo.user.role === 0 ? 'Customer' : 'Admin'}</span>
                                 </p>
                             </label>
-                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                                <li>
-                                    <a className="justify-between">Profile</a>
-                                </li>
+                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 space-y-4">
                                 <li>
                                     <Link to={`/dashboard/${userInfo.user.role === 0 ? 'user' : 'admin'}`}>Dashboard</Link>
                                 </li>
