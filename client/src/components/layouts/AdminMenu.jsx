@@ -7,7 +7,7 @@ function AdminMenu() {
         <div>
             <h1 className="text-3xl font-bold py-4">Admin Panel</h1>
             <div className="btn-group btn-group-vertical w-full">
-                <NavLink to="/dashboard/admin/create-category" className="btn  btn-outline">
+                <NavLink to="/dashboard/admin/create-category" className="btn  btn-outline ">
                     Create Category
                 </NavLink>
                 <NavLink to="/dashboard/admin/create-product" className="btn  btn-outline ">
