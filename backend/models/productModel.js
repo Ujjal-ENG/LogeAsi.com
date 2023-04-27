@@ -22,6 +22,7 @@ const ProductModel = new mongoose.Schema(
         category: {
             type: mongoose.Types.ObjectId(),
             ref: 'Category',
+            required: true,
         },
         quantity: {
             type: Number,
