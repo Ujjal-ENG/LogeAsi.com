@@ -7,6 +7,7 @@
 import slugify from 'slugify';
 import categoryModel from '../models/categoryModel.js';
 
+// create category controller
 export const createCategory = async (req, res) => {
     try {
         const { name } = req.body;
@@ -43,6 +44,7 @@ export const createCategory = async (req, res) => {
     }
 };
 
+// update category controller
 export const updateCategory = async (req, res) => {
     try {
         const category = await categoryModel.findByIdAndUpdate(
@@ -62,6 +64,33 @@ export const updateCategory = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             message: 'Error from UpdateCategory',
+            success: false,
+            error,
+        });
+    }
+};
+
+// getAll category controller
+export const getAllCategory = async (req, res) => {
+    try {
+        const getAll = await categoryModel.find();
+
+        if (!getAll) {
+            return res.status(400).json({
+                message: 'Your not created any Category yet!!',
+                success: false,
+            });
+        }
+
+        res.status(200).json({
+            message: 'All CateGory',
+            success: true,
+            results: getAll.length,
+            Categoires: getAll,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error from Get All Category',
             success: false,
             error,
         });
