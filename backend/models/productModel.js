@@ -1,5 +1,42 @@
+/* eslint-disable comma-dangle */
 import mongoose from 'mongoose';
 
-const ProductModel = new mongoose.Schema({}, { timestamps: true });
+const ProductModel = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        slug: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+            required: true,
+        },
+        price: {
+            type: Number,
+            required: true,
+        },
+        category: {
+            type: mongoose.Types.ObjectId(),
+            ref: 'Category',
+        },
+        quantity: {
+            type: Number,
+            required: true,
+        },
+        photo: {
+            data: Buffer,
+            contentType: String,
+        },
+        shipping: {
+            type: Boolean,
+        },
+    },
+
+    { timestamps: true }
+);
 
 export default mongoose.model('Product', ProductModel);
