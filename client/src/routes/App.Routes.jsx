@@ -19,6 +19,7 @@ import Register from '../components/pages/Register';
 import Dashbroad from '../components/pages/user/Dashbroad';
 import Orders from '../components/pages/user/Orders';
 import Profile from '../components/pages/user/Profile';
+import CheckAdmin from './CheckAdmin';
 import PrivateAdminRoute from './PrivateAdminRoute';
 import PrivateRoutes from './PrivateRoutes';
 
@@ -81,16 +82,19 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/dashboard',
                 element: <PrivateAdminRoute />,
                 children: [
                     {
-                        path: 'admin',
+                        path: 'dashboard/admin',
                         element: <AdminDashboard />,
                         children: [
                             {
                                 path: 'create-category',
-                                element: <CreateCategory />
+                                element: (
+                                    <CheckAdmin>
+                                        <CreateCategory />
+                                    </CheckAdmin>
+                                )
                             },
                             {
                                 path: 'create-product',
