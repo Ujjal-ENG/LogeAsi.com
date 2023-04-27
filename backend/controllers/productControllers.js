@@ -46,8 +46,7 @@ export const getAllProducts = async (req, res) => {
   try {
     const products = await productModel.find({}).populate('category').select('-photo').limit(12)
 .sort({ createdAt: -1 });
-
-    if (!products) {
+    if (products.length === 0) {
       return res.status(401).json({
         message: 'Your not created any product yet!!',
         success: false,
