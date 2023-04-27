@@ -4,6 +4,7 @@ import express from 'express';
 import formidableMiddleware from 'express-formidable';
 import {
   createProduct,
+  deleteProduct,
   getAllProducts,
   getProductPhoto,
   getSingleProduct,
@@ -23,5 +24,9 @@ router.get('/getSingle-product/:slug', requireSignIn, isAdmin, getSingleProduct)
 
 // get product photo
 router.get('/getProduct-photo/:pid', getProductPhoto);
+
+// delete product
+router.delete('/delete-product/:id', requireSignIn, isAdmin, deleteProduct);
+
 // router export
 export default router;

@@ -114,3 +114,20 @@ export const getProductPhoto = async (req, res) => {
     });
   }
 };
+
+// delete product controller
+export const deleteProduct = async (req, res) => {
+  try {
+    await productModel.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      message: 'Successfully Deleted!!',
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error from Delete Product',
+      success: false,
+      error,
+    });
+  }
+};
