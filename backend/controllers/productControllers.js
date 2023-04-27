@@ -97,7 +97,15 @@ export const getSingleProduct = async (req, res) => {
 // getProduct photo controller
 export const getProductPhoto = async (req, res) => {
   try {
-
+    const productPhoto = await productModel.findById(req.params.pid).select('photo');
+    if (productPhoto.photo.data) {
+      res.set('Content-type', productPhoto.photo.contentType);
+      return res.status(200).json({
+        message: 'Product Photo Found!!',
+        success: true,
+        data: productPhoto.photo.data,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       message: 'Error from GetPhoto',
