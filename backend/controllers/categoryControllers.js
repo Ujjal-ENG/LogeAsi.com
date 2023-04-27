@@ -115,3 +115,20 @@ export const singleCategory = async (req, res) => {
         });
     }
 };
+
+// delete category
+export const deleteCategory = async (req, res) => {
+    try {
+        await categoryModel.findByIdAndDelete(req.params.id);
+        res.status(200).json({
+            message: 'Category Deleted Successfully!!',
+            success: true,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error from Delete category.',
+            success: false,
+            error,
+        });
+    }
+};
