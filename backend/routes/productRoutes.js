@@ -5,6 +5,7 @@ import formidableMiddleware from 'express-formidable';
 import {
   createProduct,
   getAllProducts,
+  getProductPhoto,
   getSingleProduct,
 } from '../controllers/productControllers.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddlewares.js';
@@ -18,7 +19,9 @@ router.post('/create-product', requireSignIn, isAdmin, formidableMiddleware(), c
 router.get('/getall-products', requireSignIn, isAdmin, getAllProducts);
 
 // get single products
-router.get('/getSingle-product/:id', requireSignIn, isAdmin, getSingleProduct);
+router.get('/getSingle-product/:slug', requireSignIn, isAdmin, getSingleProduct);
 
+// get product photo
+router.get('/getProduct-photo/:pid', getProductPhoto);
 // router export
 export default router;

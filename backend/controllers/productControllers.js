@@ -73,7 +73,7 @@ export const getAllProducts = async (req, res) => {
 // get single products controller
 export const getSingleProduct = async (req, res) => {
   try {
-    const singleProduct = await productModel.findOne({ slug: req.params.id }).populate('category').select('-photo');
+    const singleProduct = await productModel.findOne({ slug: req.params.slug }).populate('category').select('-photo');
     if (!singleProduct) {
       return res.status(401).json({
         message: 'Product not found!!',
@@ -88,6 +88,19 @@ export const getSingleProduct = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Error from GetSingleProduct',
+      success: false,
+      error,
+    });
+  }
+};
+
+// getProduct photo controller
+export const getProductPhoto = async (req, res) => {
+  try {
+
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error from GetPhoto',
       success: false,
       error,
     });
