@@ -23,6 +23,6 @@ router.patch('/update-category/:id', requireSignIn, isAdmin, updateCategory);
 router.get('/getall-category', requireSignIn, isAdmin, getAllCategory);
 
 // single category
-router.get('/single-category/:id', singleCategory);
+router.get('/single-category/:slug', singleCategory);
 
 export default router;

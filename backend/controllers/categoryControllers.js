@@ -100,7 +100,13 @@ export const getAllCategory = async (req, res) => {
 // single category
 export const singleCategory = async (req, res) => {
     try {
+        const category = await categoryModel.findOne({ slug: req.params.slug });
 
+        res.status(200).json({
+            message: 'Get Single Category Successfully',
+            success: true,
+            category,
+        });
     } catch (error) {
         res.status(500).json({
             message: 'Error From Single Category.',
