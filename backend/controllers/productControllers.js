@@ -42,10 +42,11 @@ console.log(products);
   }
 };
 
-// get all products
+// get all products controller
 export const getAllProducts = async (req, res) => {
   try {
-    const products = await productModel.find({}).select('-photo').limit(12).sort({ createdAt: -1 });
+    const products = await productModel.find({}).populate('category').select('-photo').limit(12)
+.sort({ createdAt: -1 });
 
     if (!products) {
       return res.status(401).json({
@@ -63,6 +64,30 @@ export const getAllProducts = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Error from Get All Products',
+      success: false,
+      error,
+    });
+  }
+};
+
+// get single products controller
+export const getSingleProduct = async (req, res) => {
+  try {
+    const singleProduct = await productModel.findOne({ slug: req.params.id }).populate('category').select('-photo');
+    if (!singleProduct) {
+      return res.status(401).json({
+        message: 'Product not found!!',
+        success: false,
+  });
+}
+    return res.status(200).json({
+      message: 'Product found!!',
+      success: true,
+      singleProduct,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error from GetSingleProduct',
       success: false,
       error,
     });
