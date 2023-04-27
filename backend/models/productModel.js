@@ -1,7 +1,7 @@
 /* eslint-disable comma-dangle */
 import mongoose from 'mongoose';
 
-const ProductModel = new mongoose.Schema(
+const productModel = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -40,4 +40,4 @@ const ProductModel = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.model('Product', ProductModel);
+export default mongoose.model('Product', productModel);

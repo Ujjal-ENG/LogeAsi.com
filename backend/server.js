@@ -3,6 +3,7 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import formidableMiddleware from 'express-formidable';
 import morgan from 'morgan';
 import connectDB from './config/connectDB.js';
 import authRouter from './routes/authRoutes.js';
@@ -22,6 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
+app.use(formidableMiddleware());
 
 // routes
 app.use('/api/v1/auth', authRouter);
