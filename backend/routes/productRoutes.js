@@ -30,7 +30,7 @@ router.get('/getProduct-photo/:pid', getProductPhoto);
 router.delete('/delete-product/:id', requireSignIn, isAdmin, deleteProduct);
 
 // update product
-router.patch('/update-product/:id', requireSignIn, isAdmin, updateProduct);
+router.patch('/update-product/:id', requireSignIn, isAdmin, formidableMiddleware(), updateProduct);
 
 // router export
 export default router;

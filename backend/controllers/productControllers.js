@@ -140,27 +140,27 @@ export const updateProduct = async (req, res) => {
         success: false,
       });
     }
-    const updatedProducts = await productModel.findByIdAndUpdate(req.params.id, { ...req.fields, slug: slugify(req.fields.name) }, {
+    const products = await productModel.findByIdAndUpdate(req.params.id, { ...req.fields, slug: slugify(req.fields.name) }, {
       new: true,
     });
 
     if (photo) {
-      updatedProducts.photo.data = fs.readFileSync(photo.path);
-      updatedProducts.photo.contentType = photo.type;
+      products.photo.data = fs.readFileSync(photo.path);
+      products.photo.contentType = photo.type;
     }
 
-    await updatedProducts.save();
+    await products.save();
 
     res.status(201).json({
       message: 'Product is Successfully Updated!!',
       success: true,
-      updatedProducts,
+      products,
     });
   } catch (error) {
     res.status(500).json({
-      message: 'Error from Update Product',
+      message: `Error from Update Product${error}`,
       success: false,
-      error,
+
     });
   }
 };
