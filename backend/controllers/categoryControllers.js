@@ -40,4 +40,10 @@ export const createCategory = async (req, res) => {
             error,
         });
     }
+
+
 };
+
+export const updateCategory = async (req, res) => {
+    
+}
