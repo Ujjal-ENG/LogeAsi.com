@@ -8,6 +8,7 @@
 import fs from 'fs';
 import slugify from 'slugify';
 import productModel from '../models/productModel.js';
+
 // create product controller
 export const createProduct = async (req, res) => {
   try {
@@ -35,6 +36,33 @@ console.log(products);
   } catch (error) {
     res.status(500).json({
       message: 'Error From CreateProduct',
+      success: false,
+      error,
+    });
+  }
+};
+
+// get all products
+export const getAllProducts = async (req, res) => {
+  try {
+    const products = await productModel.find({}).select('-photo').limit(12).sort({ createdAt: -1 });
+
+    if (!products) {
+      return res.status(401).json({
+        message: 'Your not created any product yet!!',
+        success: false,
+      });
+    }
+
+    res.status(200).json({
+      message: 'All Products you are Created',
+      success: true,
+      results: products.length,
+      products,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error from Get All Products',
       success: false,
       error,
     });
