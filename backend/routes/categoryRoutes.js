@@ -11,6 +11,6 @@ const router = express.Router();
 router.post('/create-category', requireSignIn, isAdmin, createCategory);
 
 // update category
-router.patch('/update-category', requireSignIn, isAdmin, updateCategory);
+router.patch('/update-category/:id', requireSignIn, isAdmin, updateCategory);
 
 export default router;

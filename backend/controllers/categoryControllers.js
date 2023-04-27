@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable import/extensions */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-empty */
@@ -40,10 +41,29 @@ export const createCategory = async (req, res) => {
             error,
         });
     }
-
-
 };
 
 export const updateCategory = async (req, res) => {
-    
-}
+    try {
+        const category = await categoryModel.findByIdAndUpdate(
+            req.params.id,
+
+            { ...req.body, slug: slugify(req.body.name) },
+            {
+                new: true,
+            },
+        );
+
+        res.status(200).json({
+            message: 'Category Updated Successfully!!!',
+            success: true,
+            category,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error from UpdateCategory',
+            success: false,
+            error,
+        });
+    }
+};
