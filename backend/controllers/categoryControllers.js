@@ -96,3 +96,16 @@ export const getAllCategory = async (req, res) => {
         });
     }
 };
+
+// single category
+export const singleCategory = async (req, res) => {
+    try {
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error From Single Category.',
+            success: false,
+            error,
+        });
+    }
+};
