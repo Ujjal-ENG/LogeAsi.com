@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-plusplus */
@@ -57,6 +58,24 @@ function CreateCategory() {
             id
         });
     };
+    const updateButtonClick = async (datas, id) => {
+        try {
+            const { data } = await axios.patch(
+                `http://localhost:8080/api/v1/category/update-category/${id}`,
+                { name: datas },
+                {
+                    headers: {
+                        Authorization: userInfo?.token
+                    }
+                }
+            );
+            toast.success('Successfully Updated!!');
+            getAllCategory();
+        } catch (error) {
+            console.log(error);
+            toast.error('Error occured when Updating Category!!');
+        }
+    };
     return (
         <div className="w-full mx-auto">
             <h1 className="text-4xl font-bold">Manage Category</h1>
@@ -93,7 +112,7 @@ function CreateCategory() {
             {/* modal popup */}
             <input type="checkbox" id="my-modal-3" className="modal-toggle" />
             <div className="modal">
-                <UpdateCategoryForm datas={updateProps} />
+                <UpdateCategoryForm datas={updateProps} updateButtonClick={updateButtonClick} />
             </div>
         </div>
     );
