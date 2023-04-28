@@ -40,7 +40,7 @@ function CreateProduct() {
     }, []);
 
     return (
-        <div className="bg-gray-50  py-5 flex flex-col justify-center items-center">
+        <div className="bg-gray-50  my-5 flex flex-col justify-center items-center">
             <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col max-w-4xl w-full">
                 <div className="flex justify-between items-center mb-4">
                     <h1 className="text-xl font-bold">Add Product</h1>
