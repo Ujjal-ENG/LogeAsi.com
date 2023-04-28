@@ -95,6 +95,21 @@ function CreateCategory() {
             toast.error('Error occured when Updating Category!!');
         }
     };
+
+    const handleDelete = async (id) => {
+        try {
+            const { data } = await axios.delete(`http://localhost:8080/api/v1/category/delete-category/${id}`, {
+                headers: {
+                    Authorization: userInfo?.token
+                }
+            });
+            toast.success('Successfully Deleted!!');
+            getAllCategory();
+        } catch (error) {
+            console.log(error);
+            toast.error('Error occured when Deleting Category!!');
+        }
+    };
     return (
         <div className="w-full mx-auto">
             <h1 className="text-4xl font-bold">Manage Category</h1>
@@ -121,7 +136,7 @@ function CreateCategory() {
                                         <label htmlFor="my-modal-3" className="">
                                             <AiFillEdit className="text-yellow-500 cursor-pointer" onClick={() => handleEditClick(el.name, el._id)} />
                                         </label>
-                                        <AiFillDelete className="cursor-pointer text-red-500" />
+                                        <AiFillDelete className="cursor-pointer text-red-500" onClick={() => handleDelete(el._id)} />
                                     </td>
                                 </tr>
                             ))}
