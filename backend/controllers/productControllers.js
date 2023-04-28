@@ -12,27 +12,21 @@ import productModel from '../models/productModel.js';
 // create product controller
 export const createProduct = async (req, res) => {
   try {
-    const { photo } = req.files;
-    if (!req.fields) {
+    if (!req.body) {
       return res.status(400).json({
         message: 'Please Provided all fields and photo size shoulb be less than 1mb',
         success: false,
       });
     }
-    const products = new productModel({ ...req.fields, slug: slugify(req.fields.name) });
-    if (photo) {
-      products.photo.data = fs.readFileSync(photo.path);
-      products.photo.contentType = photo.type;
-    }
 
-    await products.save();
-
+    const product = await productModel.create({ ...req.body, slug: slugify(req.body.name) });
     res.status(201).json({
       message: 'Product is Successfully Created!!',
       success: true,
-      products,
+      product,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: 'Error From CreateProduct',
       success: false,
