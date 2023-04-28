@@ -2,10 +2,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-indent-props */
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../../context/AuthProvider';
 
-function UpdateCategoryForm({ data }) {
-    const { name, id } = data;
+function UpdateCategoryForm({ datas }) {
+    const { userInfo } = useContext(AuthContext);
+    const { name, id } = datas;
     const [updateName, setUpdateName] = useState({
         category: ''
     });
@@ -23,9 +27,20 @@ function UpdateCategoryForm({ data }) {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(updateName);
+        try {
+            const { data } = await axios.patch(`http://localhost:8080/api/v1/category/update-category/${id}`, JSON.stringify({ name: updateName.category }), {
+                headers: {
+                    Authorization: userInfo?.token
+                }
+            });
+            toast.success('Successfully Updated!!');
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+            toast.error('Error occured when Updating Category!!');
+        }
     };
 
     return (

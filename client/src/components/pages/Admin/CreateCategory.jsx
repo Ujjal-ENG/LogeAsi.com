@@ -93,7 +93,7 @@ function CreateCategory() {
             {/* modal popup */}
             <input type="checkbox" id="my-modal-3" className="modal-toggle" />
             <div className="modal">
-                <UpdateCategoryForm data={updateProps} />
+                <UpdateCategoryForm datas={updateProps} />
             </div>
         </div>
     );
