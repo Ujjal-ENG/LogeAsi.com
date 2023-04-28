@@ -1,3 +1,8 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable operator-linebreak */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/jsx-indent */
 /* eslint-disable comma-dangle */
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
@@ -29,7 +34,36 @@ function CreateCategory() {
         getAllCategory();
     }, []);
 
-    return <div>Kopa Mama</div>;
+    // create index
+    let count = 1;
+    return (
+        <div className="w-full mx-auto">
+            <h1 className="text-4xl font-bold">Manage Category</h1>
+            <div className="overflow-x-auto pt-10">
+                <table className="table w-full mx-auto">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th />
+                            <th>Name</th>
+                            <th>Favorite Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* row 1 */}
+                        {categories &&
+                            categories.map((el) => (
+                                <tr key={el._id}>
+                                    <th>{count++}</th>
+                                    <td>{el.name}</td>
+                                    <td>{el.slug}</td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 }
 
 export default CreateCategory;
