@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-indent */
@@ -30,19 +31,22 @@ function UpdateCategoryForm({ datas }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.patch(`http://localhost:8080/api/v1/category/update-category/${id}`, JSON.stringify({ name: updateName.category }), {
-                headers: {
-                    Authorization: userInfo?.token
+            const { data } = await axios.patch(
+                `http://localhost:8080/api/v1/category/update-category/${id}`,
+                { name: updateName.category },
+                {
+                    headers: {
+                        Authorization: userInfo?.token
+                    }
                 }
-            });
+            );
             toast.success('Successfully Updated!!');
-            console.log(data);
         } catch (error) {
             console.log(error);
             toast.error('Error occured when Updating Category!!');
         }
+        console.log(updateName.category);
     };
-
     return (
         <div>
             <form onSubmit={handleSubmit} className="form-control w-full max-w-xs">
