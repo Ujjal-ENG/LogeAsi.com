@@ -41,11 +41,11 @@ function UpdateCategoryForm({ datas }) {
                 }
             );
             toast.success('Successfully Updated!!');
+            window.location.reload();
         } catch (error) {
             console.log(error);
             toast.error('Error occured when Updating Category!!');
         }
-        console.log(updateName.category);
     };
     return (
         <div>
