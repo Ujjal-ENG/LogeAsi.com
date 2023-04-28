@@ -52,6 +52,25 @@ function CreateCategory() {
     // create index
     let count = 1;
 
+    const handleNewCategory = async (name) => {
+        try {
+            const { data } = await axios.post(
+                'http://localhost:8080/api/v1/category/create-category',
+                { name },
+                {
+                    headers: {
+                        Authorization: userInfo?.token
+                    }
+                }
+            );
+            toast.success(`${name} Successfully Created!!`);
+            getAllCategory();
+        } catch (error) {
+            console.log(error);
+            toast.error('Error occured when Creating Category!!');
+        }
+    };
+
     const handleEditClick = (name, id) => {
         setUpdatePros({
             name,
@@ -79,7 +98,7 @@ function CreateCategory() {
     return (
         <div className="w-full mx-auto">
             <h1 className="text-4xl font-bold">Manage Category</h1>
-            <CreateNewCategoryFrom />
+            <CreateNewCategoryFrom handleNewCategory={handleNewCategory} />
             <div className="w-full pt-10">
                 <table className="table w-full mx-auto">
                     {/* head */}
