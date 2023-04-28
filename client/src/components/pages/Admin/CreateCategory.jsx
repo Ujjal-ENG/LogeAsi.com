@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -20,6 +22,7 @@ function CreateCategory() {
     const { userInfo } = useContext(AuthContext);
     const [categories, setCategories] = useState([]);
     const [loading, setIsLoading] = useState(false);
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [updateProps, setUpdatePros] = useState({
         name: '',
         id: ''
@@ -65,6 +68,7 @@ function CreateCategory() {
             );
             toast.success(`${name} Successfully Created!!`);
             getAllCategory();
+            setIsCategoryOpen(!isCategoryOpen);
         } catch (error) {
             console.log(error);
             toast.error('Error occured when Creating Category!!');
@@ -113,7 +117,13 @@ function CreateCategory() {
     return (
         <div className="w-full mx-auto">
             <h1 className="text-4xl font-bold">Manage Category</h1>
-            <CreateNewCategoryFrom handleNewCategory={handleNewCategory} />
+            <h3 className={`${isCategoryOpen && 'hidden'} text-xl font-semibold mt-5`}>
+                Are want to Create New category?{' '}
+                <span className="btn btn-sm" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
+                    Yes
+                </span>
+            </h3>
+            {isCategoryOpen && <CreateNewCategoryFrom handleNewCategory={handleNewCategory} />}
             <div className="w-full pt-10">
                 <table className="table w-full mx-auto">
                     {/* head */}
