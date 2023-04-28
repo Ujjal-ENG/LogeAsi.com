@@ -65,7 +65,9 @@ function CreateCategory() {
                                     <th>{count++}</th>
                                     <td>{el.name}</td>
                                     <td className="flex text-3xl items-center gap-3 divide-x-2 div divide-black">
-                                        <AiFillEdit className="text-yellow-500 cursor-pointer" />
+                                        <label htmlFor="my-modal-3" className="btn">
+                                            <AiFillEdit className="text-yellow-500 cursor-pointer" />
+                                        </label>
                                         <AiFillDelete className="cursor-pointer text-red-500" />
                                     </td>
                                 </tr>
