@@ -19,7 +19,6 @@ import Register from '../components/pages/Register';
 import Dashbroad from '../components/pages/user/Dashbroad';
 import Orders from '../components/pages/user/Orders';
 import Profile from '../components/pages/user/Profile';
-import CheckAdmin from './CheckAdmin';
 import PrivateAdminRoute from './PrivateAdminRoute';
 import PrivateRoutes from './PrivateRoutes';
 
@@ -90,11 +89,7 @@ export const router = createBrowserRouter([
                         children: [
                             {
                                 path: 'create-category',
-                                element: (
-                                    <CheckAdmin>
-                                        <CreateCategory />
-                                    </CheckAdmin>
-                                )
+                                element: <CreateCategory />
                             },
                             {
                                 path: 'create-product',
