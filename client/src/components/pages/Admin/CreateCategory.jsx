@@ -11,12 +11,14 @@ function CreateCategory() {
     // get all category
     const getAllCategory = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/api/v1/auth/admin-auth', {
+            const { data } = await axios.get('http://localhost:8080/api/v1/category/getall-category/', {
                 headers: {
                     Authorization: userInfo?.token
                 }
             });
-            console.log(res);
+            if (data.success) {
+                setCategories(data.Categoires);
+            }
         } catch (error) {
             console.log(error);
             toast.error('Something went wrong in the getting categories');
