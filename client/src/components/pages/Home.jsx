@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable object-curly-newline */
@@ -38,17 +40,52 @@ function Home() {
         }
     };
 
+    // get all category
+    const getAllCategory = async () => {
+        setIsLoading(true);
+        try {
+            if (userInfo && userInfo?.token) {
+                const { data } = await axios.get('http://localhost:8080/api/v1/category/getall-category/', {
+                    headers: {
+                        Authorization: userInfo?.token
+                    }
+                });
+
+                if (data.success) {
+                    setCategories(data.Categoires);
+                    setIsLoading(false);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Something went wrong in the getting categories');
+        }
+    };
+
     useEffect(() => {
         getAllProducts();
+        getAllCategory();
     }, [userInfo]);
 
     if (loading) {
         return <Spinner />;
     }
+
     return (
         <div className="grid grid-cols-12 gap-4 px-5 pt-5">
             <div className="col-span-3">
                 <h6 className="text-xl font-bold">Filter By Category</h6>
+                <div className="mr-14">
+                    {categories &&
+                        categories.map((el) => (
+                            <div key={el._id} className="form-control">
+                                <label className="cursor-pointer label">
+                                    <span className="label-text">{el.name}</span>
+                                    <input type="checkbox" className="checkbox checkbox-success" />
+                                </label>
+                            </div>
+                        ))}
+                </div>
             </div>
 
             <div className="col-span-9 w-full ">
