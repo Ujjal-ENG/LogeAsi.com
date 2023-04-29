@@ -16,6 +16,9 @@ function AdminMenu() {
                 <NavLink to="/dashboard/admin/users" className="btn  btn-outline ">
                     Users
                 </NavLink>
+                <NavLink to="/dashboard/admin/products" className="btn  btn-outline ">
+                    All Created Products
+                </NavLink>
             </div>
         </div>
     );
