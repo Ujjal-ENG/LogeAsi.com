@@ -17,22 +17,23 @@ function Home() {
 
     // get products
     const getAllProducts = async () => {
+        setIsLoading(true);
         try {
-            setIsLoading(true);
-            const { data } = await axios.get('http://localhost:8080/api/v1/product/getall-products', {
-                headers: {
-                    // eslint-disable-next-line comma-dangle
-                    Authorization: userInfo?.token
+            if (userInfo && userInfo.token) {
+                const { data } = await axios.get('http://localhost:8080/api/v1/product/getall-products', {
+                    headers: {
+                        Authorization: userInfo.token
+                    }
+                });
+                if (data.success) {
+                    toast.success('All Products Data!!');
+                    setProducts(data.products);
+                    setIsLoading(false);
                 }
-            });
-            if (data.success) {
-                toast.success('All Products Data!!');
-                setProducts(data.products);
-                setIsLoading(false);
             }
         } catch (error) {
             console.log(error);
-            // toast.error('Error ocurred while fetching the All Products Data!!');
+            toast.error('Error ocurred while fetching the All Products Data!!');
         }
     };
 
