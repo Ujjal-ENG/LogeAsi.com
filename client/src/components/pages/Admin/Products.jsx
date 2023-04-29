@@ -39,6 +39,23 @@ function Products() {
         getAllProducts();
     }, []);
 
+    const handleDelete = async (id) => {
+        try {
+            const { data } = await axios.delete(`http://localhost:8080/api/v1/product/delete-product/${id}`, {
+                headers: {
+                    // eslint-disable-next-line comma-dangle
+                    Authorization: userInfo?.token
+                }
+            });
+            if (data.success) {
+                toast.success('Product is Deleted!!!');
+                getAllProducts();
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Error ocurred when Deleting the Product!!');
+        }
+    };
     return (
         <>
             <h1 className="text-3xl font-bold text-center py-4">All Created Products List</h1>
@@ -61,7 +78,7 @@ function Products() {
                                 <Link to="/dashboard/admin/update-products" state={product} className="text-gray-600 hover:text-gray-900 mr-2">
                                     <FaEdit />
                                 </Link>
-                                <button className="text-gray-600 hover:text-gray-900">
+                                <button className="text-gray-600 hover:text-gray-900" onClick={() => handleDelete(product._id)}>
                                     <FaTrash />
                                 </button>
                             </div>
