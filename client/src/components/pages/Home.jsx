@@ -53,7 +53,7 @@ function Home() {
 
             <div className="col-span-9 w-full ">
                 <h1 className=" font-bold text-3xl text-center w-full">All Products</h1>
-                <div className="grid grid-cols-3 py-5">
+                <div className="grid grid-cols-3 py-5 gap-6">
                     {products &&
                         products.map((product) => {
                             const { _id, photo, price, quantity, name, description } = product;
