@@ -17,7 +17,8 @@ function Home() {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [loading, setIsLoading] = useState(false);
-
+    const [checked, setIsChecked] = useState([]);
+    const [filterProduct, setFilterProduct] = useState([]);
     // get products
     const getAllProducts = async () => {
         setIsLoading(true);
@@ -31,6 +32,7 @@ function Home() {
                 if (data.success) {
                     toast.success('All Products Data!!');
                     setProducts(data.products);
+                    setFilterProduct(data.products);
                     setIsLoading(false);
                 }
             }
@@ -70,7 +72,14 @@ function Home() {
     if (loading) {
         return <Spinner />;
     }
-
+    const handleChange = (e) => {
+        if (e.target.checked) {
+            setIsChecked(e.target.value);
+        }
+        const filterData = filterProduct.filter((el) => el.category._id === checked);
+        setProducts(filterData);
+        console.log(filterData);
+    };
     return (
         <div className="grid grid-cols-12 gap-4 px-5 pt-5">
             <div className="col-span-3">
@@ -81,7 +90,7 @@ function Home() {
                             <div key={el._id} className="form-control">
                                 <label className="cursor-pointer label">
                                     <span className="label-text">{el.name}</span>
-                                    <input type="checkbox" className="checkbox checkbox-success" />
+                                    <input type="checkbox" className="checkbox checkbox-success" id="checkbox" name="checkbox" value={el._id} onChange={handleChange} />
                                 </label>
                             </div>
                         ))}
