@@ -81,31 +81,35 @@ function CreateProduct() {
                     </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="grid grid-cols-4 gap-6">
+                <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
                     <div className="flex flex-col mb-4">
                         <label htmlFor="name" className="font-medium mb-2">
                             Product Name
                         </label>
                         <input type="text" id="name" name="name" className="border border-gray-300 rounded-md p-2" value={product.name} onChange={handleChange} />
                     </div>
+
                     <div className="flex flex-col mb-4">
                         <label htmlFor="slug" className="font-medium mb-2">
                             Slug
                         </label>
                         <input type="text" id="slug" name="slug" className="border border-gray-300 rounded-md p-2" disabled value={product.name} onChange={handleChange} />
                     </div>
+
                     <div className="flex flex-col mb-4">
                         <label htmlFor="description" className="font-medium mb-2">
                             Description
                         </label>
                         <textarea id="description" name="description" rows="4" className="border border-gray-300 rounded-md p-2" value={product.description} onChange={handleChange} />
                     </div>
+
                     <div className="flex flex-col mb-4">
                         <label htmlFor="price" className="font-medium mb-2">
                             Price
                         </label>
                         <input type="number" id="price" name="price" className="border border-gray-300 rounded-md p-2" value={product.price} onChange={handleChange} />
                     </div>
+
                     <div className="flex flex-col mb-4">
                         <label htmlFor="category" className="font-medium mb-2">
                             Category
@@ -123,20 +127,22 @@ function CreateProduct() {
                             )}
                         </select>
                     </div>
+
                     <div className="flex flex-col mb-4">
                         <label htmlFor="quantity" className="font-medium mb-2">
                             Quantity
                         </label>
                         <input type="number" id="quantity" name="quantity" className="border border-gray-300 rounded-md p-2" value={product.quantity} onChange={handleChange} />
                     </div>
-                    <div className="flex flex-col mb-4 grid-flow-row">
+
+                    <div className="flex flex-col mb-4">
                         <label htmlFor="photo" className="font-medium mb-2">
                             Give Photo URL
                         </label>
                         <div className="flex">
                             <input type="text" id="photo" name="photo" className="border border-gray-300 rounded-md p-2" value={product.photo} onChange={handleChange} />
 
-                            <div className="w-24 justify-end">{product.photo && <img src={product.photo} alt="product_photo" className="object-contain" />}</div>
+                            <div className="w-full justify-end">{product.photo && <img src={product.photo} alt="product_photo" className="object-contain" />}</div>
                         </div>
                     </div>
 
@@ -147,6 +153,7 @@ function CreateProduct() {
                             <option value={false}>No</option>
                         </select>
                     </div>
+
                     <div className="flex justify-end">
                         <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md mr-2">
                             <FaCheck className="inline-block mr-2" />
