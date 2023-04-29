@@ -52,7 +52,7 @@ function Products() {
                                     <p className="text-gray-600 text-sm w-11/12">{product.description}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold text-gray-800 mt-2">${product.price}</p>
-                                        <p className="font-bold text-gray-800 mt-2">${product.quantity}</p>
+                                        <p className="font-bold text-gray-800 mt-2">Quantity: {product.quantity}</p>
                                     </div>
                                 </div>
                             </div>
