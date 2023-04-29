@@ -10,6 +10,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaArrowLeft, FaCheck, FaTimes } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import Spinner from '../../layouts/Spinner';
 
@@ -53,7 +54,7 @@ function CreateProduct() {
     useEffect(() => {
         getAllCategory();
     }, []);
-
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -65,6 +66,7 @@ function CreateProduct() {
             });
             if (data.success) {
                 toast.success('Product is Created Successfully!!');
+                navigate('/dashboard/admin/products');
             }
         } catch (error) {
             console.log(error);
