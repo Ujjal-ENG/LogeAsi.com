@@ -69,7 +69,6 @@ function UpdateProduct() {
                     Authorization: userInfo?.token
                 }
             });
-            console.log(data);
             if (data.success) {
                 toast.success('Product is updated!!!');
                 navigate('/dashboard/admin/products');
