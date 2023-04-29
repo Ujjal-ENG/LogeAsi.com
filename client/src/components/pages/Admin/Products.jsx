@@ -75,7 +75,7 @@ function Products() {
                                 </div>
                             </div>
                             <div className="flex text-2xl">
-                                <Link to="/dashboard/admin/update-products" state={product} className="text-gray-600 hover:text-gray-900 mr-2">
+                                <Link to={`/dashboard/admin/update-products/${product.slug}`} state={product} className="text-gray-600 hover:text-gray-900 mr-2">
                                     <FaEdit />
                                 </Link>
                                 <button className="text-gray-600 hover:text-gray-900" onClick={() => handleDelete(product._id)}>

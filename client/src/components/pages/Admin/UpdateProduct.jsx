@@ -20,7 +20,6 @@ function UpdateProduct() {
     const { state } = location;
     const { userInfo } = useContext(AuthContext);
     const [categories, setCategories] = useState([]);
-
     const [product, setProduct] = useState({
         name: state.name,
         description: state.description,

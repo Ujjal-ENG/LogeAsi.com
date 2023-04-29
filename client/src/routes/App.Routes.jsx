@@ -106,7 +106,7 @@ export const router = createBrowserRouter([
                                 element: <Products />
                             },
                             {
-                                path: 'update-products',
+                                path: 'update-products/:slug',
                                 element: <UpdateProduct />
                             }
                         ]
