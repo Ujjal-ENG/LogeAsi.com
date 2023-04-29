@@ -32,13 +32,13 @@ function Home() {
             }
         } catch (error) {
             console.log(error);
-            toast.error('Error occured while fetching the All Products Data!!');
+            // toast.error('Error ocurred while fetching the All Products Data!!');
         }
     };
 
     useEffect(() => {
         getAllProducts();
-    }, []);
+    }, [userInfo]);
 
     if (loading) {
         return <Spinner />;
