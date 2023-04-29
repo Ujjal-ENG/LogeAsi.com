@@ -80,7 +80,8 @@ function CreateProduct() {
                         <FaArrowLeft className="inline-block mr-2" /> Back
                     </button>
                 </div>
-                <form onSubmit={handleSubmit}>
+
+                <form onSubmit={handleSubmit} className="grid grid-cols-4 gap-6">
                     <div className="flex flex-col mb-4">
                         <label htmlFor="name" className="font-medium mb-2">
                             Product Name
@@ -128,7 +129,7 @@ function CreateProduct() {
                         </label>
                         <input type="number" id="quantity" name="quantity" className="border border-gray-300 rounded-md p-2" value={product.quantity} onChange={handleChange} />
                     </div>
-                    <div className="flex flex-col mb-4">
+                    <div className="flex flex-col mb-4 grid-flow-row">
                         <label htmlFor="photo" className="font-medium mb-2">
                             Give Photo URL
                         </label>
@@ -138,6 +139,7 @@ function CreateProduct() {
                             <div className="w-24 justify-end">{product.photo && <img src={product.photo} alt="product_photo" className="object-contain" />}</div>
                         </div>
                     </div>
+
                     <div className=" items-center mb-4">
                         <select name="shipping" id="shipping">
                             <option value="">Shipping</option>
