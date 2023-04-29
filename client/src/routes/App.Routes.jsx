@@ -7,6 +7,7 @@ import AdminDashboard from '../components/pages/Admin/AdminDashboard';
 import CreateCategory from '../components/pages/Admin/CreateCategory';
 import CreateProduct from '../components/pages/Admin/CreateProduct';
 import Products from '../components/pages/Admin/Products';
+import UpdateProduct from '../components/pages/Admin/UpdateProduct';
 import Users from '../components/pages/Admin/Users';
 import Category from '../components/pages/Category';
 import ErrorPage from '../components/pages/ErrorPage';
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
                             {
                                 path: 'products',
                                 element: <Products />
+                            },
+                            {
+                                path: 'update-products',
+                                element: <UpdateProduct />
                             }
                         ]
                     }

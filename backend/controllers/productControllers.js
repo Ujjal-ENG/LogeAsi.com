@@ -5,7 +5,6 @@
 /* eslint-disable no-empty */
 /* eslint-disable linebreak-style */
 
-import fs from 'fs';
 import slugify from 'slugify';
 import productModel from '../models/productModel.js';
 
@@ -127,23 +126,15 @@ export const deleteProduct = async (req, res) => {
 // update product controller
 export const updateProduct = async (req, res) => {
   try {
-    const { photo } = req.files;
-    if (!req.fields) {
+    if (!req.body) {
       return res.status(400).json({
         message: 'Please Provided all fields and photo size should be less than 1mb',
         success: false,
       });
     }
-    const products = await productModel.findByIdAndUpdate(req.params.id, { ...req.fields, slug: slugify(req.fields.name) }, {
+    const products = await productModel.findByIdAndUpdate(req.params.id, { ...req.body, slug: slugify(req.body.name) }, {
       new: true,
     });
-
-    if (photo) {
-      products.photo.data = fs.readFileSync(photo.path);
-      products.photo.contentType = photo.type;
-    }
-
-    await products.save();
 
     res.status(201).json({
       message: 'Product is Successfully Updated!!',

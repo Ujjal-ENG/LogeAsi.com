@@ -9,6 +9,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
 function Products() {
@@ -57,9 +58,9 @@ function Products() {
                                 </div>
                             </div>
                             <div className="flex text-2xl">
-                                <button className="text-gray-600 hover:text-gray-900 mr-2">
+                                <Link to="/dashboard/admin/update-products" state={product} className="text-gray-600 hover:text-gray-900 mr-2">
                                     <FaEdit />
-                                </button>
+                                </Link>
                                 <button className="text-gray-600 hover:text-gray-900">
                                     <FaTrash />
                                 </button>
