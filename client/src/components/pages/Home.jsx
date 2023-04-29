@@ -19,6 +19,7 @@ function Home() {
     const [categories, setCategories] = useState([]);
 
     const [loading, setIsLoading] = useState(false);
+    const [rangevalue, setRangeValue] = useState(0);
 
     const [filterProduct, setFilterProduct] = useState([]);
     // get products
@@ -83,6 +84,13 @@ function Home() {
             setProducts(filterProduct);
         }
     };
+    const maxPrice = products.map((el) => el.price).sort((a, b) => b - a)[0];
+    const minPrice = products.map((el) => el.price).sort((a, b) => a - b)[0];
+
+    const handleChange2 = (e) => {
+        const filterPrice = filterProduct.filter((el) => el.price > e.target.value);
+        setProducts(filterPrice);
+    };
     return (
         <div className="grid grid-cols-12 gap-4 px-5 pt-5">
             <div className="col-span-3">
@@ -98,6 +106,9 @@ function Home() {
                             </div>
                         ))}
                 </div>
+
+                <h6 className="text-xl font-bold mt-5">Filter By Price</h6>
+                <input type="range" min={minPrice} max={maxPrice} value={rangevalue} onChange={handleChange2} className="range range-error my-3 w-11/12" />
             </div>
 
             <div className="col-span-9 w-full ">
