@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -16,8 +17,9 @@ function Home() {
     const { userInfo } = useContext(AuthContext);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
+
     const [loading, setIsLoading] = useState(false);
-    const [checked, setIsChecked] = useState([]);
+
     const [filterProduct, setFilterProduct] = useState([]);
     // get products
     const getAllProducts = async () => {
@@ -73,12 +75,13 @@ function Home() {
         return <Spinner />;
     }
     const handleChange = (e) => {
+        const filterData = filterProduct.filter((el) => el.category._id === e.target.value);
+
         if (e.target.checked) {
-            setIsChecked(e.target.value);
+            setProducts(filterData);
+        } else {
+            setProducts(filterProduct);
         }
-        const filterData = filterProduct.filter((el) => el.category._id === checked);
-        setProducts(filterData);
-        console.log(filterData);
     };
     return (
         <div className="grid grid-cols-12 gap-4 px-5 pt-5">
