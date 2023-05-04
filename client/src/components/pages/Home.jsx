@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-closing-bracket-location */
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable react/jsx-indent-props */
 /* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -19,9 +22,24 @@ function Home() {
     const [categories, setCategories] = useState([]);
 
     const [loading, setIsLoading] = useState(false);
-    const [rangevalue, setRangeValue] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
 
     const [filterProduct, setFilterProduct] = useState([]);
+
+    // getTotalCount
+    const getTotal = async () => {
+        try {
+            const { data } = await axios.get('http://localhost:8080/api/v1/product/product-count');
+            if (data.success) {
+                setTotal(data?.total);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Error occured while the GetToalFunction CALLED!!');
+        }
+    };
+
     // get products
     const getAllProducts = async () => {
         setIsLoading(true);
@@ -66,10 +84,26 @@ function Home() {
             toast.error('Something went wrong in the getting categories');
         }
     };
+    // load more
+    const loadMore = async () => {
+        try {
+            setIsLoading(true);
+            const { data } = await axios.get(`http://localhost:8080/api/v1/category/product-list/${page}`);
+            setIsLoading(false);
+            setProducts([...products, ...data?.products]);
+        } catch (error) {
+            console.log(error);
+            setIsLoading(false);
+            toast.error('Something went wrong in the Page');
+        }
+    };
 
     useEffect(() => {
         getAllProducts();
         getAllCategory();
+        getTotal();
+        if (page === 1) return;
+        loadMore();
     }, [userInfo]);
 
     if (loading) {
@@ -84,13 +118,7 @@ function Home() {
             setProducts(filterProduct);
         }
     };
-    const maxPrice = products.map((el) => el.price).sort((a, b) => b - a)[0];
-    const minPrice = products.map((el) => el.price).sort((a, b) => a - b)[0];
 
-    const handleChange2 = (e) => {
-        const filterPrice = filterProduct.filter((el) => el.price > e.target.value);
-        setProducts(filterPrice);
-    };
     return (
         <div className="grid grid-cols-12 gap-4 px-5 pt-5">
             <div className="col-span-3">
@@ -106,9 +134,6 @@ function Home() {
                             </div>
                         ))}
                 </div>
-
-                <h6 className="text-xl font-bold mt-5">Filter By Price</h6>
-                <input type="range" min={minPrice} max={maxPrice} value={rangevalue} onChange={handleChange2} className="range range-error my-3 w-11/12" />
             </div>
 
             <div className="col-span-9 w-full ">
@@ -139,6 +164,19 @@ function Home() {
                                 </div>
                             );
                         })}
+                </div>
+                <div className=" py-3 flex justify-center">
+                    {products && products.length < total && (
+                        <button
+                            type="button"
+                            className="btn btn-wide btn-success"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setPage(page + 1);
+                            }}>
+                            {loading ? 'Loading..Please Wait!!' : 'Load More Product!!'}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
