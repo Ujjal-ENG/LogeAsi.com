@@ -7,6 +7,8 @@ import {
   getAllProducts,
   getProductPhoto,
   getSingleProduct,
+  paginationProduct,
+  shownProductPerPage,
   updateProduct,
 } from '../controllers/productControllers.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddlewares.js';
@@ -30,6 +32,12 @@ router.delete('/delete-product/:id', requireSignIn, isAdmin, deleteProduct);
 
 // update product
 router.patch('/update-product/:id', requireSignIn, isAdmin, updateProduct);
+
+// pagination product
+router.get('/product-count', paginationProduct);
+
+// product per page shown
+router.get('/product-list/:count', shownProductPerPage);
 
 // router export
 export default router;

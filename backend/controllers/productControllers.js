@@ -149,3 +149,40 @@ export const updateProduct = async (req, res) => {
     });
   }
 };
+
+// pagination product controller
+export const paginationProduct = async (req, res) => {
+  try {
+    const total = await productModel.find({}).estimatedDocumentCount();
+    res.status(200).json({
+      success: true,
+      total,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Error from Pagination Controller!!',
+      error,
+    });
+  }
+};
+
+// based on the product shown product
+export const shownProductPerPage = async (req, res) => {
+  try {
+    const perPage = 6;
+    const count = req.params.count ? req.params.count : 1;
+    const products = await productModel.find({}).skip((count - 1) * perPage).limit(perPage).sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Error from ShownProductPage Controller!!',
+      error,
+    });
+  }
+};
