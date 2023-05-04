@@ -190,7 +190,17 @@ export const shownProductPerPage = async (req, res) => {
 // search product
 export const searchProduct = async (req, res) => {
   try {
-    
+    const { keyword } = req.params;
+    const result = productModel.find({
+      $or: [
+        { name: { $reges: keyword, $options: 'i' } },
+        { description: { $reges: keyword, $options: 'i' } },
+      ],
+    }).select('-photo');
+    res.status(200).json({
+      success: false,
+      result,
+    });
   } catch (error) {
     res.status(400).json({
       success: false,
@@ -198,4 +208,4 @@ export const searchProduct = async (req, res) => {
       error,
     });
   }
-}
+};

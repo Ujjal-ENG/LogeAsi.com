@@ -41,7 +41,7 @@ router.get('/product-count', paginationProduct);
 router.get('/product-list/:count', shownProductPerPage);
 
 // search product
-router.get('/search-product', searchProduct);
+router.get('/search-product/:keyword', searchProduct);
 
 // router export
 export default router;
