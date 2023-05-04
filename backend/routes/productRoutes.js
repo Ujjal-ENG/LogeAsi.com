@@ -8,6 +8,7 @@ import {
   getProductPhoto,
   getSingleProduct,
   paginationProduct,
+  searchProduct,
   shownProductPerPage,
   updateProduct,
 } from '../controllers/productControllers.js';
@@ -38,6 +39,9 @@ router.get('/product-count', paginationProduct);
 
 // product per page shown
 router.get('/product-list/:count', shownProductPerPage);
+
+// search product
+router.get('/search-product', searchProduct);
 
 // router export
 export default router;

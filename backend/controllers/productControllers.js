@@ -186,3 +186,16 @@ export const shownProductPerPage = async (req, res) => {
     });
   }
 };
+
+// search product
+export const searchProduct = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Error from SearchProduct Controller!!',
+      error,
+    });
+  }
+}
