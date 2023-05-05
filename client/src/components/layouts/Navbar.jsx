@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -14,8 +15,10 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/LoGeAsi.svg';
 import { AuthContext } from '../../context/AuthProvider';
 import { SearchContext } from '../../context/SearchProvider';
+import useCategory from '../../hooks/useCategory';
 
 function Navbar() {
+    const categories = useCategory();
     const { setSearchResults, setIsLoading } = useContext(SearchContext);
     const { userInfo, logoutUser } = useContext(AuthContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -37,6 +40,7 @@ function Navbar() {
             toast.error('Error occured while fetching the Search Results!!');
         }
     };
+
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
             <div className="navbar bg-base-100 flex justify-between items-center relative">
@@ -66,9 +70,20 @@ function Navbar() {
                     <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
                         Home
                     </NavLink>
-                    <NavLink to="/category" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
-                        Category
-                    </NavLink>
+                    <Link to="/category">
+                        <ul className="menu menu-horizontal bg-base-100">
+                            <li tabIndex={0}>
+                                <span>Category</span>
+                                <ul className="bg-base-100 space-y-4 px-4 py-2">
+                                    {categories?.map((el, idx) => (
+                                        <li key={idx} className=" hover:bg-gray-300 hover:p-3">
+                                            {el.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        </ul>
+                    </Link>
                 </div>
 
                 {/* mobile menu */}
