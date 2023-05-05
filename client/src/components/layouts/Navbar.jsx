@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
@@ -10,11 +11,19 @@ import { ImCross, ImMenu } from 'react-icons/im';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/LoGeAsi.svg';
 import { AuthContext } from '../../context/AuthProvider';
+import { SearchContext } from '../../context/SearchProvider';
 
 function Navbar() {
+    const { setSearchText, setIsLoading } = useContext(SearchContext);
     const { userInfo, logoutUser } = useContext(AuthContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-
+    const [searchValue, setSearchValue] = useState('');
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setSearchText(searchValue);
+        setIsLoading(false);
+    };
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
             <div className="navbar bg-base-100 flex justify-between items-center relative">
@@ -27,6 +36,20 @@ function Navbar() {
                     {menuIsOpen ? <ImCross onClick={() => setMenuIsOpen(!menuIsOpen)} className="text-red-600" /> : <ImMenu onClick={() => setMenuIsOpen(!menuIsOpen)} />}
                 </div>
                 <div className="gap-8 hidden sm:flex">
+                    <div>
+                        <form onClick={handleSubmit} className="flex items-center gap-3">
+                            <input
+                                type="text"
+                                placeholder="Search here"
+                                className="input input-bordered input-primary w-full max-w-xs"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                            />
+                            <button type="submit" className="btn btn-success btn-md">
+                                Search
+                            </button>
+                        </form>
+                    </div>
                     <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
                         Home
                     </NavLink>
