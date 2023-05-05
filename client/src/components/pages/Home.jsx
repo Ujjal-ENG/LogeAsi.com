@@ -13,6 +13,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import Spinner from '../layouts/Spinner';
 
@@ -157,9 +158,9 @@ function Home() {
                                         <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full h-full">
                                             Add to Cart
                                         </button>
-                                        <button type="button" className="btn hover:bg-black text-white font-bold py-2 px-4 rounded-full h-full">
-                                            Buy Now
-                                        </button>
+                                        <Link to={`/product-details/${product.slug}`} type="button" className="btn hover:bg-black text-white font-bold py-2 px-4 rounded-full h-full">
+                                            Product Details
+                                        </Link>
                                     </div>
                                 </div>
                             );
