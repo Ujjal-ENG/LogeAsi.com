@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -111,12 +112,12 @@ function Navbar() {
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                                     />
                                 </svg>
-                                <span className="badge badge-sm indicator-item">{cart?.length || 0}</span>
+                                <span className="badge badge-sm indicator-item">{cart?.length}</span>
                             </div>
                         </label>
                         <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                             <div className="card-body">
-                                <span className="font-bold text-lg">8 Items</span>
+                                <span className="font-bold text-lg">{cart?.length} Items</span>
                                 <span className="text-info">Subtotal: ${subTotal}</span>
                                 <div className="card-actions">
                                     <Link to="/cart" className="btn btn-primary btn-block">
