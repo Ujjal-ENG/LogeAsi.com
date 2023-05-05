@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-underscore-dangle */
@@ -38,7 +39,7 @@ function ProductDetails() {
     }
 
     return (
-        <div className="max-w-7xl mx-auto py-5">
+        <div className="max-w-7xl mx-auto py-5 space-y-6">
             <div key={singleProduct._id} className="bg-white rounded-md overflow-hidden shadow-md w-full grid grid-cols-2  h-full">
                 <img src={singleProduct.photo} alt={singleProduct.name} className="w-3/4 h-96 bg-contain object-cover" />
                 <div className="p-4 flex-grow relative">
@@ -59,6 +60,8 @@ function ProductDetails() {
                     </div>
                 </div>
             </div>
+
+            <div>Similar Products</div>
         </div>
     );
 }
