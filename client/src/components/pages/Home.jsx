@@ -21,7 +21,7 @@ import Spinner from '../layouts/Spinner';
 
 function Home() {
     const { userInfo } = useContext(AuthContext);
-    const [cart, setCart] = useCart([]);
+    const [setCart] = useCart([]);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [loading, setIsLoading] = useState(false);
@@ -123,7 +123,6 @@ function Home() {
             setProducts(filterProduct);
         }
     };
-
     const handleAddToCart = (product) => {
         setCart((ps) => {
             // check exists product or not
