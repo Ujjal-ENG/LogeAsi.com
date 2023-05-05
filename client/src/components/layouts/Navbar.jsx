@@ -19,7 +19,8 @@ import { SearchContext } from '../../context/SearchProvider';
 import useCategory from '../../hooks/useCategory';
 
 function Navbar() {
-    const cart = JSON.parse(localStorage.getItem('cartItem'));
+    const carted = JSON.parse(localStorage.getItem('cartItem'));
+    const [cart, setCart] = useState(carted || []);
     const categories = useCategory();
     const { setSearchResults, setIsLoading } = useContext(SearchContext);
     const { userInfo, logoutUser } = useContext(AuthContext);

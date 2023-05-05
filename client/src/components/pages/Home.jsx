@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react/jsx-indent-props */
