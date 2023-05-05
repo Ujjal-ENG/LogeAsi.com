@@ -15,18 +15,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import { useCart } from '../../context/CartProvider';
 import useTitle from '../../hooks/useTitle';
 import Spinner from '../layouts/Spinner';
 
 function Home() {
     const { userInfo } = useContext(AuthContext);
+    const [cart, setCart] = useCart([]);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-
     const [loading, setIsLoading] = useState(false);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
-
     const [filterProduct, setFilterProduct] = useState([]);
 
     // set title
@@ -124,6 +124,22 @@ function Home() {
         }
     };
 
+    const handleAddToCart = (product) => {
+        setCart((ps) => {
+            // check exists product or not
+            const existingProduct = ps.find((el) => el._id === product._id);
+            if (existingProduct) {
+                const updatedProduct = {
+                    ...existingProduct,
+                    quantity: existingProduct.quantity + 1
+                };
+                return ps.map((el) => (el._id === product._id ? updatedProduct : el));
+            }
+            return [...ps, { ...product, quantity: 1 }];
+        });
+        toast.success('Product is added!!');
+    };
+
     return (
         <div className="grid grid-cols-12 gap-4 px-5 pt-5">
             <div className="col-span-3">
@@ -159,7 +175,7 @@ function Home() {
                                         </div>
                                     </div>
                                     <div className="mt-auto flex justify-between items-center p-2">
-                                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full h-full">
+                                        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full h-full" onClick={() => handleAddToCart(product)}>
                                             Add to Cart
                                         </button>
                                         <Link to={`/product-details/${product.slug}`} type="button" className="btn hover:bg-black text-white font-bold py-2 px-4 rounded-full h-full">
