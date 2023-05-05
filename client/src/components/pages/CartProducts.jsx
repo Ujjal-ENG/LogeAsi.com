@@ -28,7 +28,7 @@ function CartProducts() {
                 return product;
             });
 
-            localStorage.setItem('cartItem', JSON.stringify({ ...updatedProduct, ...updateQuantity }));
+            // localStorage.setItem('cartItem', JSON.stringify(updatedProduct));
             setCart(updatedProduct);
         }
     };
