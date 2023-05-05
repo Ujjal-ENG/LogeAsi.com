@@ -10,7 +10,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { ImCross, ImMenu } from 'react-icons/im';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/LoGeAsi.svg';
 import { AuthContext } from '../../context/AuthProvider';
 import { SearchContext } from '../../context/SearchProvider';
@@ -20,13 +20,15 @@ function Navbar() {
     const { userInfo, logoutUser } = useContext(AuthContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (searchValue === '') return;
         try {
             const { data } = await axios.get(`http://localhost:8080/api/v1/product/search-product/${searchValue}`);
             if (data.success) {
-                setSearchResults(data);
+                setSearchResults(data.result);
+                navigate('/search');
             }
             setIsLoading(false);
         } catch (error) {

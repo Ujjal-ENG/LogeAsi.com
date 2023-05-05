@@ -13,10 +13,11 @@ function SearchProvider({ children }) {
     if (loading) {
         return <Spinner />;
     }
-    console.log(searchResults);
+
     const auths = {
         setSearchResults,
-        setIsLoading
+        setIsLoading,
+        searchResults
     };
 
     return <SearchContext.Provider value={auths}>{children}</SearchContext.Provider>;

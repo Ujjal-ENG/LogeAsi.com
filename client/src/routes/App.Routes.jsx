@@ -18,6 +18,7 @@ import ForgotPassword from '../components/pages/ForgotPassword';
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import Register from '../components/pages/Register';
+import SearchValue from '../components/pages/SearchValue';
 import Dashbroad from '../components/pages/user/Dashbroad';
 import Orders from '../components/pages/user/Orders';
 import Profile from '../components/pages/user/Profile';
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/search',
+                element: <SearchValue />
             },
             {
                 path: 'category',
