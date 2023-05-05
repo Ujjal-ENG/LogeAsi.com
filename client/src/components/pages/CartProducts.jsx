@@ -14,7 +14,8 @@ function CartProducts() {
     const handleIncrease = (id) => {
         // Increase product quantity in cart
 
-        const findProduct = cart.find((el) => el._id === id);
+        const findProduct = cartItem.find((el) => el._id === id);
+
         if (findProduct) {
             const updateQuantity = {
                 ...findProduct,
@@ -27,8 +28,8 @@ function CartProducts() {
                 }
                 return product;
             });
+            // localStorage.setItem('cartItem', JSON.stringify({ ...updatedProduct }));
 
-            // localStorage.setItem('cartItem', JSON.stringify(updatedProduct));
             setCart(updatedProduct);
         }
     };
