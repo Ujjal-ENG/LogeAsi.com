@@ -40,7 +40,7 @@ function Navbar() {
             toast.error('Error occured while fetching the Search Results!!');
         }
     };
-
+    console.log(categories);
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
             <div className="navbar bg-base-100 flex justify-between items-center relative">
@@ -70,20 +70,19 @@ function Navbar() {
                     <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'default:')}>
                         Home
                     </NavLink>
-                    <Link to="/category">
-                        <ul className="menu menu-horizontal bg-base-100">
-                            <li tabIndex={0}>
-                                <span>Category</span>
-                                <ul className="bg-base-100 space-y-4 px-4 py-2">
-                                    {categories?.map((el, idx) => (
-                                        <li key={idx} className=" hover:bg-gray-300 hover:p-3">
-                                            {el.name}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
-                        </ul>
-                    </Link>
+
+                    <ul className="menu menu-horizontal bg-base-100">
+                        <li tabIndex={0}>
+                            <Link to="/category">Category</Link>
+                            <ul className="bg-base-100 space-y-4 px-4 py-2">
+                                {categories?.map((el, idx) => (
+                                    <Link to={`/category/${el.slug}`} key={idx} className=" hover:bg-gray-300 hover:p-3">
+                                        {el.name}
+                                    </Link>
+                                ))}
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
 
                 {/* mobile menu */}
