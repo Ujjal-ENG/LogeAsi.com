@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-one-expression-per-line */
+import { useEffect } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartProvider';
 
 function CartProducts() {
@@ -47,7 +50,16 @@ function CartProducts() {
 
     const handleRemove = (id) => {
         // Remove product from cart
+        const fillteredProduct = cart.filter((el) => el._id !== id);
+        setCart(fillteredProduct);
     };
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (cart.length === 0) {
+            navigate('/');
+        }
+    }, [cart.length]);
 
     return (
         <div className="max-w-screen-lg mx-auto py-10">
