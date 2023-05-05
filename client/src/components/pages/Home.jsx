@@ -21,7 +21,7 @@ import Spinner from '../layouts/Spinner';
 
 function Home() {
     const { userInfo } = useContext(AuthContext);
-    const [setCart] = useCart([]);
+    const [cart, setCart] = useCart([]);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [loading, setIsLoading] = useState(false);

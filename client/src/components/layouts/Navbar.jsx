@@ -19,7 +19,7 @@ import { SearchContext } from '../../context/SearchProvider';
 import useCategory from '../../hooks/useCategory';
 
 function Navbar() {
-    const cart = useCart();
+    const [cart, setCart] = useCart([]);
     const categories = useCategory();
     const { setSearchResults, setIsLoading } = useContext(SearchContext);
     const { userInfo, logoutUser } = useContext(AuthContext);
@@ -42,6 +42,7 @@ function Navbar() {
             toast.error('Error occured while fetching the Search Results!!');
         }
     };
+    const subTotal = cart.reduce((ps, cs) => ps + cs.quantity * cs.price, 0);
 
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
@@ -116,7 +117,7 @@ function Navbar() {
                         <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                             <div className="card-body">
                                 <span className="font-bold text-lg">8 Items</span>
-                                <span className="text-info">Subtotal: $999</span>
+                                <span className="text-info">Subtotal: ${subTotal}</span>
                                 <div className="card-actions">
                                     <button className="btn btn-primary btn-block">View cart</button>
                                 </div>
