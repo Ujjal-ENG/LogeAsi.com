@@ -9,6 +9,7 @@ import CreateProduct from '../components/pages/Admin/CreateProduct';
 import Products from '../components/pages/Admin/Products';
 import UpdateProduct from '../components/pages/Admin/UpdateProduct';
 import Users from '../components/pages/Admin/Users';
+import CartProducts from '../components/pages/CartProducts';
 import Category from '../components/pages/Category';
 import ErrorPage from '../components/pages/ErrorPage';
 import About from '../components/pages/FooterPage/About';
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: 'category/:slug',
                 element: <Category />
+            },
+            {
+                path: '/cart',
+                element: <CartProducts />
             },
             {
                 path: 'about',
