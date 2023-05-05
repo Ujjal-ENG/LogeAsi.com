@@ -3,8 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-indent-props */
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../context/AuthProvider';
+import React, { useEffect, useState } from 'react';
 
 function UpdateCategoryForm({ datas, updateButtonClick }) {
     const { name, id } = datas;

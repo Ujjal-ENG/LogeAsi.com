@@ -11,8 +11,10 @@ import { toast } from 'react-hot-toast';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 function Products() {
+    useTitle('All Created Products');
     const { userInfo } = useContext(AuthContext);
     const [products, setProducts] = useState([]);
 

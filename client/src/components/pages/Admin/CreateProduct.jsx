@@ -12,9 +12,11 @@ import { toast } from 'react-hot-toast';
 import { FaArrowLeft, FaCheck, FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import Spinner from '../../layouts/Spinner';
 
 function CreateProduct() {
+    useTitle('Create new Product');
     const { userInfo } = useContext(AuthContext);
     const [categories, setCategories] = useState([]);
     const [product, setProduct] = useState({

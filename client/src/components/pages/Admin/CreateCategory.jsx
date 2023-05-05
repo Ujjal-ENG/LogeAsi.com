@@ -14,11 +14,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { AuthContext } from '../../../context/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import Spinner from '../../layouts/Spinner';
 import CreateNewCategoryFrom from './CreateNewCategoryFrom';
 import UpdateCategoryForm from './UpdateCategoryForm';
 
 function CreateCategory() {
+    useTitle('Create Category');
     const { userInfo } = useContext(AuthContext);
     const [categories, setCategories] = useState([]);
     const [loading, setIsLoading] = useState(false);

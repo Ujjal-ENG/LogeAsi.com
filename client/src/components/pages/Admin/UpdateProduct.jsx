@@ -13,9 +13,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import Spinner from '../../layouts/Spinner';
 
 function UpdateProduct() {
+    useTitle('Update Product');
     const location = useLocation();
     const { state } = location;
     const { userInfo } = useContext(AuthContext);
