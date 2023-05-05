@@ -39,16 +39,17 @@ function ProductDetails() {
 
     return (
         <div className="max-w-7xl mx-auto py-5">
-            <div key={singleProduct._id} className="bg-white rounded-md overflow-hidden shadow-md w-full flex  h-full">
-                <img src={singleProduct.photo} alt={singleProduct.name} className="w-3/4  bg-contain object-cover" />
+            <div key={singleProduct._id} className="bg-white rounded-md overflow-hidden shadow-md w-full grid grid-cols-2  h-full">
+                <img src={singleProduct.photo} alt={singleProduct.name} className="w-3/4 h-96 bg-contain object-cover" />
                 <div className="p-4 flex-grow relative">
+                    <h1 className="text-4xl font-bold text-center py-4">Product Details</h1>
                     <h2 className="font-bold text-lg mb-2">{singleProduct.name}</h2>
                     <p className="text-gray-700 text-base mb-4">{singleProduct.description}</p>
                     <div className="flex justify-between items-center">
                         <p className="text-gray-700 font-bold text-xl">{singleProduct.price} USD</p>
                         <p className="text-gray-600">{singleProduct.quantity} left in stock</p>
                     </div>
-                    <div className="bottom-0 absolute flex flex-col gap-5  justify-center ">
+                    <div className="bottom-0 absolute grid grid-cols-2 gap-40 ">
                         <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full  h-full">
                             Add to Cart
                         </button>
