@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
                 element: <ProductDetails />
             },
             {
-                path: 'category',
+                path: 'category/:slug',
                 element: <Category />
             },
             {

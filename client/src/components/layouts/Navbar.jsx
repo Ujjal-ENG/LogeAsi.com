@@ -73,7 +73,7 @@ function Navbar() {
 
                     <ul className="menu menu-horizontal bg-base-100">
                         <li tabIndex={0}>
-                            <Link to="/category">Category</Link>
+                            <span>Category</span>
                             <ul className="bg-base-100 space-y-4 px-4 py-2">
                                 {categories?.map((el, idx) => (
                                     <Link to={`/category/${el.slug}`} key={idx} className=" hover:bg-gray-300 hover:p-3">
