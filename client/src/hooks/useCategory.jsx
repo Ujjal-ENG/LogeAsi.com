@@ -26,7 +26,7 @@ const useCategory = () => {
 
     useEffect(() => {
         getCategories();
-    }, []);
+    }, [userInfo?.token]);
     return categories;
 };
 
