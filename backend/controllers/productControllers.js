@@ -211,11 +211,20 @@ export const searchProduct = async (req, res) => {
   }
 };
 
-
 // releted product controller
 export const reletedProductController = async (req, res) => {
   try {
-    
+    const { pid, cid } = req.params;
+
+    const products = await productModel.find({
+      category: cid,
+      _id: { $ne: pid },
+    }).limit(3).populate('category');
+
+    res.status(200).json({
+      success: true,
+      products,
+    });
   } catch (error) {
     res.status(400).json({
       success: false,
@@ -223,4 +232,4 @@ export const reletedProductController = async (req, res) => {
       error,
     });
   }
-}
+};
