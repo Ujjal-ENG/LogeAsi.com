@@ -64,7 +64,7 @@ export const getAllProducts = async (req, res) => {
 // get single products controller
 export const getSingleProduct = async (req, res) => {
   try {
-    const singleProduct = await productModel.findOne({ slug: req.params.slug }).populate('category').select('-photo');
+    const singleProduct = await productModel.findOne({ slug: req.params.slug }).populate('category');
     if (!singleProduct) {
       return res.status(401).json({
         message: 'Product not found!!',
