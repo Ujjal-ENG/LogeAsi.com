@@ -3,13 +3,13 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-one-expression-per-line */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../../context/CartProvider';
 
 function CartProducts() {
-    const [cart, setCart] = useCart([]);
+    const cartItem = JSON.parse(localStorage.getItem('cartItem'));
+    const [cart, setCart] = useState(cartItem);
 
     const handleIncrease = (id) => {
         // Increase product quantity in cart

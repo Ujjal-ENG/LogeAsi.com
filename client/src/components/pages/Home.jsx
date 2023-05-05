@@ -132,9 +132,15 @@ function Home() {
                     ...existingProduct,
                     quantity: existingProduct.quantity + 1
                 };
-                return ps.map((el) => (el._id === product._id ? updatedProduct : el));
+
+                const updatedCartsProduct = ps.map((el) => (el._id === product._id ? updatedProduct : el));
+                localStorage.setItem('cartItem', JSON.stringify(updatedCartsProduct));
+                return updatedCartsProduct;
             }
-            return [...ps, { ...product, quantity: 1 }];
+
+            const updatedCart = [...ps, { ...product, quantity: 1 }];
+            localStorage.setItem('cartItem', JSON.stringify(updatedCart));
+            return updatedCart;
         });
         toast.success('Product is added!!');
     };
