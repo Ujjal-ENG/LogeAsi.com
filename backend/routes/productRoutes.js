@@ -2,6 +2,7 @@
 /* eslint-disable import/extensions */
 import express from 'express';
 import {
+  categoryWiseProduct,
   createProduct,
   deleteProduct,
   getAllProducts,
@@ -46,6 +47,9 @@ router.get('/search-product/:keyword', searchProduct);
 
 // similar search products
 router.get('/search-releted-product/:pid/:cid', reletedProductController);
+
+// category wise products
+router.get('/category-wise-products/:slug', categoryWiseProduct);
 
 // router export
 export default router;

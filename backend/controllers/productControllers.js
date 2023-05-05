@@ -6,8 +6,8 @@
 /* eslint-disable linebreak-style */
 
 import slugify from 'slugify';
+import categoryModel from '../models/categoryModel.js';
 import productModel from '../models/productModel.js';
-
 // create product controller
 export const createProduct = async (req, res) => {
   try {
@@ -229,6 +229,25 @@ export const reletedProductController = async (req, res) => {
     res.status(400).json({
       success: false,
       message: 'Error from Releted Product Controller!!',
+      error,
+    });
+  }
+};
+
+// category wise product
+export const categoryWiseProduct = async (req, res) => {
+  try {
+    const categoryProduct = await categoryModel.findOne({ slug: req.params.slug });
+    const products = await productModel.find({ category: categoryProduct }).populate('category');
+    res.status(200).json({
+      success: true,
+      categoryProduct,
+      products,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Error from Category Wise Product Controller!!',
       error,
     });
   }
