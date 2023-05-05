@@ -3,8 +3,10 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
+import useTitle from '../../../hooks/useTitle';
 
 function Contact() {
+    useTitle('Contact');
     return (
         <div className="bg-gray-100">
             <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">

@@ -15,6 +15,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import Spinner from '../layouts/Spinner';
 
 function Home() {
@@ -27,6 +28,9 @@ function Home() {
     const [page, setPage] = useState(1);
 
     const [filterProduct, setFilterProduct] = useState([]);
+
+    // set title
+    useTitle('Home');
 
     // getTotalCount
     const getTotal = async () => {

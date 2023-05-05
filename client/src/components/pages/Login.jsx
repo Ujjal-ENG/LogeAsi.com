@@ -13,8 +13,10 @@ import React, { useContext, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 function Login() {
+    useTitle('Login');
     const { loggedInUser } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false);
     const [user, setUser] = useState({

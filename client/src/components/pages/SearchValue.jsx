@@ -4,8 +4,10 @@
 /* eslint-disable operator-linebreak */
 import React, { useContext } from 'react';
 import { SearchContext } from '../../context/SearchProvider';
+import useTitle from '../../hooks/useTitle';
 
 function SearchValue() {
+    useTitle('Search Product');
     const { searchResults } = useContext(SearchContext);
     return (
         <div className="w-full flex justify-center items-center flex-col">

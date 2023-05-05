@@ -4,8 +4,10 @@
 /* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import useTitle from '../../../hooks/useTitle';
 
 function About() {
+    useTitle('About');
     return (
         <div className="bg-white flex justify-center items-center w-full">
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">

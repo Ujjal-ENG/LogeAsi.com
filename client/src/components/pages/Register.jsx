@@ -12,8 +12,10 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { FaAddressCard, FaEnvelope, FaLock, FaPhone, FaUser, FaUserPlus } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 function Register() {
+    useTitle('Register');
     const [showPass, setShowPass] = useState(false);
     const { registerUser } = useContext(AuthContext);
     const [user, setUser] = useState({

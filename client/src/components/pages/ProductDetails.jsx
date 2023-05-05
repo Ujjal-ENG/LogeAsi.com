@@ -9,8 +9,10 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 function ProductDetails() {
+    useTitle('Product Details');
     const { userInfo } = useContext(AuthContext);
     const [singleProduct, setSingleProduct] = useState([]);
     const [reletedProduct, setReletedProduct] = useState([]);

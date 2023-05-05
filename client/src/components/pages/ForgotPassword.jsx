@@ -11,8 +11,10 @@
 import React, { useContext, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 function ForgotPassword() {
+    useTitle('Forgot Password');
     const [showPass, setShowPass] = useState(false);
     const { forgotPassword } = useContext(AuthContext);
     const [user, setUser] = useState({

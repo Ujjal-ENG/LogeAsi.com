@@ -3,8 +3,10 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 function ErrorPage() {
+    useTitle('Error Page');
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
