@@ -13,20 +13,23 @@ function CartProducts() {
 
     const handleIncrease = (id) => {
         // Increase product quantity in cart
-        const findProduct = cart.find((el) => el._id === id);
 
+        const findProduct = cart.find((el) => el._id === id);
         if (findProduct) {
             const updateQuantity = {
                 ...findProduct,
                 quantity: findProduct.quantity + 1
             };
-            const updatedCart = cart.map((product) => {
+
+            const updatedProduct = cart.map((product) => {
                 if (product._id === id) {
                     return updateQuantity;
                 }
                 return product;
             });
-            setCart(updatedCart);
+
+            localStorage.setItem('cartItem', JSON.stringify({ ...updatedProduct, ...updateQuantity }));
+            setCart(updatedProduct);
         }
     };
 

@@ -15,12 +15,11 @@ import { ImCross, ImMenu } from 'react-icons/im';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/LoGeAsi.svg';
 import { AuthContext } from '../../context/AuthProvider';
-import { useCart } from '../../context/CartProvider';
 import { SearchContext } from '../../context/SearchProvider';
 import useCategory from '../../hooks/useCategory';
 
 function Navbar() {
-    const [cart, setCart] = useCart([]);
+    const cart = JSON.parse(localStorage.getItem('cartItem'));
     const categories = useCategory();
     const { setSearchResults, setIsLoading } = useContext(SearchContext);
     const { userInfo, logoutUser } = useContext(AuthContext);
