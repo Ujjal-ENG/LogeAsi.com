@@ -36,7 +36,7 @@ function Category() {
     if (loading) {
         return <progress className="progress w-56" />;
     }
-    console.log(productData);
+
     return (
         <div className="max-w-7xl mx-auto py-5">
             <h1 className="text-4xl font-bold text-center">
