@@ -210,3 +210,17 @@ export const searchProduct = async (req, res) => {
     });
   }
 };
+
+
+// releted product controller
+export const reletedProductController = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Error from Releted Product Controller!!',
+      error,
+    });
+  }
+}

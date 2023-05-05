@@ -8,6 +8,7 @@ import {
   getProductPhoto,
   getSingleProduct,
   paginationProduct,
+  reletedProductController,
   searchProduct,
   shownProductPerPage,
   updateProduct,
@@ -42,6 +43,9 @@ router.get('/product-list/:count', shownProductPerPage);
 
 // search product
 router.get('/search-product/:keyword', searchProduct);
+
+// similar search products
+router.get('/search-releted-product/:pid/:cid', reletedProductController);
 
 // router export
 export default router;
