@@ -66,7 +66,7 @@ function CartProducts() {
             <h1 className="text-3xl font-bold mb-5">Cart</h1>
             <div className="flex flex-col">
                 {cart.map((product) => (
-                    <div key={product.id} className="flex flex-col md:flex-row items-center mb-5">
+                    <div key={product._id} className="flex flex-col md:flex-row items-center mb-5">
                         <img src={product.photo} alt={product.name} className="w-24 h-24 object-contain rounded-lg shadow-md mb-3 md:mb-0" />
                         <div className="flex flex-col flex-grow justify-between md:ml-5">
                             <h2 className="text-lg font-bold">{product.name}</h2>
