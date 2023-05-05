@@ -191,14 +191,15 @@ export const shownProductPerPage = async (req, res) => {
 export const searchProduct = async (req, res) => {
   try {
     const { keyword } = req.params;
-    const result = productModel.find({
+    console.log(keyword);
+    const result = await productModel.find({
       $or: [
-        { name: { $reges: keyword, $options: 'i' } },
-        { description: { $reges: keyword, $options: 'i' } },
+        { name: { $regex: keyword, $options: 'i' } },
+        { description: { $regex: keyword, $options: 'i' } },
       ],
-    }).select('-photo');
+    });
     res.status(200).json({
-      success: false,
+      success: true,
       result,
     });
   } catch (error) {

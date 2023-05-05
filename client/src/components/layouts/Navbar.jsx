@@ -6,7 +6,9 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-indent */
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { ImCross, ImMenu } from 'react-icons/im';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/LoGeAsi.svg';
@@ -14,15 +16,24 @@ import { AuthContext } from '../../context/AuthProvider';
 import { SearchContext } from '../../context/SearchProvider';
 
 function Navbar() {
-    const { setSearchText, setIsLoading } = useContext(SearchContext);
+    const { setSearchResults, setIsLoading } = useContext(SearchContext);
     const { userInfo, logoutUser } = useContext(AuthContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
-        setSearchText(searchValue);
-        setIsLoading(false);
+        if (searchValue === '') return;
+        try {
+            const { data } = await axios.get(`http://localhost:8080/api/v1/product/search-product/${searchValue}`);
+            if (data.success) {
+                setSearchResults(data);
+            }
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+            console.log(error);
+            toast.error('Error occured while fetching the Search Results!!');
+        }
     };
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
