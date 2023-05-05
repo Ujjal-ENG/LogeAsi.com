@@ -40,7 +40,7 @@ function Navbar() {
             toast.error('Error occured while fetching the Search Results!!');
         }
     };
-    console.log(categories);
+
     return (
         <nav className="py-3 shadow-lg text-2xl font-bold">
             <div className="navbar bg-base-100 flex justify-between items-center relative">
