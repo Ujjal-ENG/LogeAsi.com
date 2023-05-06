@@ -126,19 +126,17 @@ function Home() {
     };
     const handleAddToCart = (product) => {
         setCart((ps) => {
-            // check exists product or not
-            const existingProduct = ps.find((el) => el._id === product._id);
-            if (existingProduct) {
+            const existingProductIndex = ps.findIndex((el) => el._id === product._id);
+            if (existingProductIndex !== -1) {
                 const updatedProduct = {
-                    ...existingProduct,
-                    quantity: existingProduct.quantity + 1
+                    ...ps[existingProductIndex],
+                    quantity: ps[existingProductIndex].quantity + 1
                 };
-
-                const updatedCartsProduct = ps.map((el) => (el._id === product._id ? updatedProduct : el));
-                localStorage.setItem('cartItem', JSON.stringify(updatedCartsProduct));
-                return updatedCartsProduct;
+                const updatedCart = [...ps];
+                updatedCart[existingProductIndex] = updatedProduct;
+                localStorage.setItem('cartItem', JSON.stringify(updatedCart));
+                return updatedCart;
             }
-
             const updatedCart = [...ps, { ...product, quantity: 1 }];
             localStorage.setItem('cartItem', JSON.stringify(updatedCart));
             return updatedCart;

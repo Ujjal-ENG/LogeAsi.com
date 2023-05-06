@@ -14,7 +14,7 @@ function CartProducts() {
     const handleIncrease = (id) => {
         // Increase product quantity in cart
 
-        const findProduct = cartItem.find((el) => el._id === id);
+        const findProduct = cart.find((el) => el._id === id);
 
         if (findProduct) {
             const updateQuantity = {
