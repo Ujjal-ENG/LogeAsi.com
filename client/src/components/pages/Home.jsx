@@ -126,18 +126,26 @@ function Home() {
     };
     const handleAddToCart = (product) => {
         setCart((ps) => {
-            const existingProductIndex = ps.findIndex((el) => el._id === product._id);
-            if (existingProductIndex !== -1) {
-                const updatedProduct = {
-                    ...ps[existingProductIndex],
-                    quantity: ps[existingProductIndex].quantity + 1
+            const existingProductIndex = ps.find((el) => el._id === product._id);
+            if (existingProductIndex) {
+                const updateQuantity = {
+                    ...existingProductIndex,
+                    quantity: existingProductIndex.quantity + 1
                 };
-                const updatedCart = [...ps];
-                updatedCart[existingProductIndex] = updatedProduct;
-                localStorage.setItem('cartItem', JSON.stringify(updatedCart));
-                return updatedCart;
+                const updatedCartsProduct = ps.map((el) => (el._id === product._id ? updateQuantity : el));
+                localStorage.setItem('cartItem', JSON.stringify(updatedCartsProduct));
+                return updatedCartsProduct;
             }
             const updatedCart = [...ps, { ...product, quantity: 1 }];
+            const checkExistCart = JSON.parse(localStorage.getItem('cartItem')) || [];
+
+            if (checkExistCart) {
+                const updateCart = {
+                    ...checkExistCart,
+                    quantity: checkExistCart.quantity + 1
+                };
+                localStorage.setItem('cartItem', JSON.stringify(updateCart));
+            }
             localStorage.setItem('cartItem', JSON.stringify(updatedCart));
             return updatedCart;
         });
