@@ -21,15 +21,12 @@ function CartProducts() {
                 ...findProduct,
                 quantity: findProduct.quantity + 1
             };
-
             const updatedProduct = cart.map((product) => {
                 if (product._id === id) {
                     return updateQuantity;
                 }
                 return product;
             });
-            // localStorage.setItem('cartItem', JSON.stringify({ ...updatedProduct }));
-
             setCart(updatedProduct);
         }
     };
@@ -54,7 +51,8 @@ function CartProducts() {
 
     const handleRemove = (id) => {
         // Remove product from cart
-        const fillteredProduct = cart.filter((el) => el._id !== id);
+        const fillteredProduct = cartItem.filter((el) => el._id !== id);
+        localStorage.setItem('cartItem', JSON.stringify(fillteredProduct));
         setCart(fillteredProduct);
     };
 
