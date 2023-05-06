@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 /* eslint-disable object-curly-newline */
@@ -143,11 +144,33 @@ export const forgotPassword = async (req, res) => {
 // updateProfile Controller
 export const updateProfileController = async (req, res) => {
     try {
+        const { name, email, password, address, phone } = req.body;
+        const user = await userModel.findById(req.body);
+        console.log(req.user);
+        // check password
+        if (!password && password.length < 6) {
+            return res.json({ error: 'Password is atleast 6 chachter long!!' });
+        }
+        const hashedPassowrd = password ? await hashPassword(password) : undefined;
+
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.user._id,
+            {
+                name: name || user.name,
+                password: hashedPassowrd || user.password,
+                phone: phone || user.phone,
+                address: address || user.address,
+            },
+            { new: true },
+        );
+        res.status(200).json({
+            success: true,
+            updatedUser,
+        });
     } catch (error) {
         res.status(400).json({
-            message: 'Bad Request from Update Profile User',
+            message: `Bad Request from Update Profile User${error}`,
             success: false,
-            error,
         });
     }
 };

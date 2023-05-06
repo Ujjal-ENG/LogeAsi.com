@@ -1,23 +1,41 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-indent */
+import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
 
 function Profile() {
     const { userInfo } = useContext(AuthContext);
-    console.log(userInfo);
     const [name, setName] = useState(userInfo.user.name);
     const [email, setEmail] = useState(userInfo.user.email);
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState(userInfo.user.phone);
     const [address, setAddress] = useState(userInfo.user.address);
-
+    // const { user } = userInfo;
     // get user Data
     useEffect(() => {});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const { data } = await axios.patch('http://localhost:8080/api/v1/auth/update-profile', {
+                name,
+                email,
+                password,
+                phone,
+                address
+            });
+            if (data.success) {
+                toast.success('Data is Updated!!');
+                console.log(data);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Error occur while update the user profile!!');
+        }
     };
 
     return (
