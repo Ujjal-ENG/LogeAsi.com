@@ -140,6 +140,18 @@ export const forgotPassword = async (req, res) => {
     }
 };
 
+// updateProfile Controller
+export const updateProfileController = async (req, res) => {
+    try {
+    } catch (error) {
+        res.status(400).json({
+            message: 'Bad Request from Update Profile User',
+            success: false,
+            error,
+        });
+    }
+};
+
 // test router
 export const testRouter = (req, res) => {
     res.send('Kopa mama this is protected');
